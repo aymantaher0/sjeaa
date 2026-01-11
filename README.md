@@ -2,6 +2,8 @@
 
 A full-stack website builder application similar to Carrd, built with React, TypeScript, Node.js, Express, and PostgreSQL.
 
+**⚡ [Quick Start Guide](QUICKSTART.md)** - Get running in 5 minutes with Docker!
+
 ## Features
 
 - **User Authentication**: JWT-based authentication with signup/login
@@ -67,11 +69,47 @@ sjeaa/
 
 ## Getting Started
 
-### Prerequisites
+### 🐳 Quick Start with Docker (Recommended)
+
+The easiest way to run the entire application with a single command:
+
+```bash
+# 1. Clone the repository
+git clone <repository-url>
+cd sjeaa
+
+# 2. Set JWT secret (generate a secure random string)
+cp .env.docker .env
+# Edit .env and set JWT_SECRET=your-secure-random-string
+
+# 3. Start everything with Docker
+docker-compose up -d
+
+# 4. Access the application
+# Frontend: http://localhost
+# Backend API: http://localhost:3000
+```
+
+That's it! Docker will automatically:
+- Set up PostgreSQL database
+- Run database migrations
+- Start the backend API
+- Build and serve the frontend
+
+**See [DOCKER.md](DOCKER.md) for complete Docker documentation.**
+
+---
+
+### 📦 Manual Installation
+
+If you prefer to run without Docker:
+
+#### Prerequisites
 
 - Node.js 18+ and npm
 - PostgreSQL 12+
 - Git
+- Docker (optional, for containerized deployment)
 
 ### 1. Clone the Repository
 

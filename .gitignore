@@ -32,3 +32,10 @@ logs/
 
 # TypeScript
 *.tsbuildinfo
+
+# Database backups
+backup.sql
+*.sql.backup
+
+# Docker
+.docker/

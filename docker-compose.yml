@@ -1,0 +1,130 @@
+version: '3.8'
+
+services:
+  # PostgreSQL Database
+  db:
+    image: postgres:15-alpine
+    container_name: carrd-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: carrd_clone
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - carrd-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Backend API
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: carrd-backend
+    restart: unless-stopped
+    environment:
+      PORT: 3000
+      NODE_ENV: production
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_NAME: carrd_clone
+      DB_USER: postgres
+      DB_PASSWORD: postgres
+      JWT_SECRET: ${JWT_SECRET:-change-this-secret-in-production-please-use-a-random-string}
+      JWT_EXPIRES_IN: 7d
+      APP_DOMAIN: localhost:3000
+      FRONTEND_URL: http://localhost
+      PUBLISH_DIR: /app/published_sites
+      SUBDOMAIN_BASE: app-domain.com
+    volumes:
+      - published_sites:/app/published_sites
+    ports:
+      - "3000:3000"
+    networks:
+      - carrd-network
+    depends_on:
+      db:
+        condition: service_healthy
+    command: >
+      sh -c "
+        echo 'Waiting for database to be ready...' &&
+        sleep 5 &&
+        node dist/index.js
+      "
+
+  # Database Migration Runner (runs once)
+  migrate:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: carrd-migrate
+    environment:
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_NAME: carrd_clone
+      DB_USER: postgres
+      DB_PASSWORD: postgres
+    networks:
+      - carrd-network
+    depends_on:
+      db:
+        condition: service_healthy
+    command: >
+      sh -c "
+        echo 'Running database migrations...' &&
+        node -r ts-node/register src/db/migrate.ts ||
+        (cd src/db && node -e \"
+          const fs = require('fs');
+          const { Pool } = require('pg');
+          const pool = new Pool({
+            host: 'db',
+            port: 5432,
+            database: 'carrd_clone',
+            user: 'postgres',
+            password: 'postgres'
+          });
+          const schema = fs.readFileSync('schema.sql', 'utf-8');
+          pool.query(schema).then(() => {
+            console.log('Migrations completed!');
+            process.exit(0);
+          }).catch(err => {
+            console.error('Migration failed:', err);
+            process.exit(1);
+          });
+        \") &&
+        echo 'Migrations completed successfully!'
+      "
+    restart: "no"
+
+  # Frontend
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      args:
+        VITE_API_URL: http://localhost:3000
+    container_name: carrd-frontend
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    networks:
+      - carrd-network
+    depends_on:
+      - backend
+
+volumes:
+  postgres_data:
+    driver: local
+  published_sites:
+    driver: local
+
+networks:
+  carrd-network:
+    driver: bridge

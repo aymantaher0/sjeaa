@@ -1,0 +1,98 @@
+version: '3.8'
+
+services:
+  # PostgreSQL Database
+  db:
+    image: postgres:15-alpine
+    container_name: carrd-db-dev
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: carrd_clone
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - postgres_data_dev:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - carrd-network-dev
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Backend API with hot reload
+  backend:
+    image: node:18-alpine
+    container_name: carrd-backend-dev
+    restart: unless-stopped
+    working_dir: /app
+    environment:
+      PORT: 3000
+      NODE_ENV: development
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_NAME: carrd_clone
+      DB_USER: postgres
+      DB_PASSWORD: postgres
+      JWT_SECRET: dev-secret-key-change-in-production
+      JWT_EXPIRES_IN: 7d
+      APP_DOMAIN: localhost:3000
+      FRONTEND_URL: http://localhost:5173
+      PUBLISH_DIR: /app/published_sites
+      SUBDOMAIN_BASE: app-domain.com
+    volumes:
+      - ./backend:/app
+      - /app/node_modules
+      - published_sites_dev:/app/published_sites
+    ports:
+      - "3000:3000"
+    networks:
+      - carrd-network-dev
+    depends_on:
+      db:
+        condition: service_healthy
+    command: >
+      sh -c "
+        npm install &&
+        echo 'Waiting for database...' &&
+        sleep 5 &&
+        echo 'Running migrations...' &&
+        npm run db:migrate || true &&
+        echo 'Starting development server...' &&
+        npm run dev
+      "
+
+  # Frontend with hot reload
+  frontend:
+    image: node:18-alpine
+    container_name: carrd-frontend-dev
+    restart: unless-stopped
+    working_dir: /app
+    environment:
+      VITE_API_URL: http://localhost:3000
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    ports:
+      - "5173:5173"
+    networks:
+      - carrd-network-dev
+    depends_on:
+      - backend
+    command: >
+      sh -c "
+        npm install &&
+        npm run dev -- --host 0.0.0.0
+      "
+
+volumes:
+  postgres_data_dev:
+    driver: local
+  published_sites_dev:
+    driver: local
+
+networks:
+  carrd-network-dev:
+    driver: bridge
