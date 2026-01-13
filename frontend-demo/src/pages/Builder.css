@@ -1,0 +1,12 @@
+.builder {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.builder-content {
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+}

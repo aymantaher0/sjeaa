@@ -1,0 +1,57 @@
+.canvas {
+  flex: 1;
+  overflow-y: auto;
+  background-color: #f0f0f0;
+  display: flex;
+  justify-content: center;
+  padding: 40px 20px;
+  transition: all 0.3s;
+}
+
+.canvas-desktop .canvas-page {
+  width: 100%;
+  max-width: 1200px;
+  background-color: white;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  min-height: 100vh;
+}
+
+.canvas-mobile .canvas-page {
+  width: 375px;
+  background-color: white;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  min-height: 667px;
+}
+
+.canvas-section {
+  width: 100%;
+  cursor: pointer;
+  transition: outline 0.2s;
+}
+
+.canvas-section:hover {
+  outline: 1px dashed #ccc;
+}
+
+.canvas-section-boxed .section-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.canvas-section-full_width .section-content {
+  width: 100%;
+  padding: 0 20px;
+}
+
+.canvas-element {
+  margin: 10px 0;
+}
+
+.canvas-empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: var(--text-secondary);
+}

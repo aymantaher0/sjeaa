@@ -4,6 +4,8 @@ A full-stack website builder application similar to Carrd, built with React, Typ
 
 **⚡ [Quick Start Guide](QUICKSTART.md)** - Get running in 5 minutes with Docker!
 
+**🎨 [Frontend-Only Demo](frontend-demo/)** - Want to review the UI without setup? Check the standalone demo (no backend needed)!
+
 ## Features
 
 - **User Authentication**: JWT-based authentication with signup/login
