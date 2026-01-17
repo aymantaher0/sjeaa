@@ -17,14 +17,41 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 });
 
 // ===============================
-// Mobile Navigation Toggle
+// Menu Overlay Toggle
 // ===============================
 const navToggle = document.getElementById('navToggle');
-const navMenu = document.querySelector('.nav-menu');
+const menuOverlay = document.getElementById('menuOverlay');
+const menuLinks = document.querySelectorAll('.menu-link');
 
-if (navToggle) {
+if (navToggle && menuOverlay) {
+    // Toggle menu overlay
     navToggle.addEventListener('click', () => {
-        navMenu.classList.toggle('active');
+        menuOverlay.classList.toggle('active');
+        document.body.style.overflow = menuOverlay.classList.contains('active') ? 'hidden' : '';
+    });
+
+    // Close menu when clicking on a link
+    menuLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            menuOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+    });
+
+    // Close menu when clicking outside
+    menuOverlay.addEventListener('click', (e) => {
+        if (e.target === menuOverlay) {
+            menuOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    });
+
+    // Close menu with Escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && menuOverlay.classList.contains('active')) {
+            menuOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
     });
 }
 
