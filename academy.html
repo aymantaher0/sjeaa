@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Design Academy & Courses - Ayman Taher">
+    <meta name="author" content="Ayman Taher">
+    <title>Academy | Ayman Taher</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <a href="index.html">
+                    <i class="fas fa-home-alt"></i>
+                </a>
+            </div>
+            <button class="nav-toggle" id="navToggle">
+                <i class="fas fa-grip-vertical"></i>
+            </button>
+            <a href="contact.html" class="btn btn-primary btn-nav">Book A Consultation</a>
+        </div>
+    </nav>
+
+    <!-- Full Screen Menu Overlay -->
+    <div class="menu-overlay" id="menuOverlay">
+        <div class="menu-content">
+            <div class="menu-header">
+                <span class="menu-label">Menu.</span>
+            </div>
+            <ul class="menu-list">
+                <li><a href="index.html" class="menu-link">HOME</a></li>
+                <li><a href="about.html" class="menu-link">ABOUT</a></li>
+                <li><a href="projects.html" class="menu-link">PROJECTS</a></li>
+                <li><a href="services.html" class="menu-link">SERVICES</a></li>
+                <li><a href="academy.html" class="menu-link active">ACADEMY</a></li>
+                <li><a href="index.html#blogs" class="menu-link">BLOGS & NEWS</a></li>
+                <li><a href="contact.html" class="menu-link">CONTACT</a></li>
+            </ul>
+            <div class="menu-footer">
+                <div class="menu-social">
+                    <a href="#" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" target="_blank" aria-label="Dribbble"><i class="fab fa-dribbble"></i></a>
+                    <a href="#" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                </div>
+                <div class="menu-actions">
+                    <a href="contact.html" class="btn btn-primary">Start a New Project</a>
+                    <a href="contact.html" class="btn btn-secondary">Book Appointment</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Academy Hero -->
+    <section class="page-hero">
+        <div class="container">
+            <h1 class="page-title">Design Academy</h1>
+            <p class="page-subtitle">Complete education system for designers centered around practical courses</p>
+        </div>
+    </section>
+
+    <!-- Courses Section -->
+    <section class="courses">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Featured Courses</h2>
+                <p class="section-description">Learn design principles and tools from industry experts</p>
+            </div>
+
+            <div class="courses-grid">
+                <div class="course-card">
+                    <div class="course-image">
+                        <img src="assets/images/course1.jpg" alt="Course" onerror="this.src='https://via.placeholder.com/400x250/ffffff/000000?text=UX/UI+Design'">
+                    </div>
+                    <div class="course-content">
+                        <span class="course-tag">UX DESIGN</span>
+                        <h3>UX/UI Design Master Course</h3>
+                        <p class="course-meta">Beginner • 20 sessions</p>
+                        <p class="course-description">Comprehensive program covering all aspects of UX/UI design from fundamentals to advanced techniques.</p>
+                        <div class="course-footer">
+                            <div class="course-stats">
+                                <span><i class="fas fa-users"></i> 1,234 students</span>
+                                <span><i class="fas fa-star"></i> 4.9 (245)</span>
+                            </div>
+                            <a href="contact.html" class="btn btn-primary btn-small">Enroll Now</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="course-card">
+                    <div class="course-image">
+                        <img src="assets/images/course2.jpg" alt="Course" onerror="this.src='https://via.placeholder.com/400x250/ffffff/000000?text=UX+Foundation'">
+                    </div>
+                    <div class="course-content">
+                        <span class="course-tag">UX DESIGN</span>
+                        <h3>UX Design Foundation</h3>
+                        <p class="course-meta">Beginner • 18 hours</p>
+                        <p class="course-description">Build a solid foundation in user experience design principles and methodologies.</p>
+                        <div class="course-footer">
+                            <div class="course-stats">
+                                <span><i class="fas fa-users"></i> 892 students</span>
+                                <span><i class="fas fa-star"></i> 4.8 (156)</span>
+                            </div>
+                            <a href="contact.html" class="btn btn-primary btn-small">Enroll Now</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="course-card">
+                    <div class="course-image">
+                        <img src="assets/images/course3.jpg" alt="Course" onerror="this.src='https://via.placeholder.com/400x250/ffffff/000000?text=Figma+Mastery'">
+                    </div>
+                    <div class="course-content">
+                        <span class="course-tag">TOOLS</span>
+                        <h3>Figma Design Mastery</h3>
+                        <p class="course-meta">Intermediate • 15 sessions</p>
+                        <p class="course-description">Master Figma from basics to advanced features including Auto Layout, Components, and Plugins.</p>
+                        <div class="course-footer">
+                            <div class="course-stats">
+                                <span><i class="fas fa-users"></i> 2,145 students</span>
+                                <span><i class="fas fa-star"></i> 4.9 (389)</span>
+                            </div>
+                            <a href="contact.html" class="btn btn-primary btn-small">Enroll Now</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="course-card">
+                    <div class="course-image">
+                        <img src="assets/images/course4.jpg" alt="Course" onerror="this.src='https://via.placeholder.com/400x250/ffffff/000000?text=Mobile+Design'">
+                    </div>
+                    <div class="course-content">
+                        <span class="course-tag">MOBILE</span>
+                        <h3>Mobile App Design Bootcamp</h3>
+                        <p class="course-meta">Advanced • 25 hours</p>
+                        <p class="course-description">Learn to design beautiful and functional mobile applications for iOS and Android platforms.</p>
+                        <div class="course-footer">
+                            <div class="course-stats">
+                                <span><i class="fas fa-users"></i> 1,567 students</span>
+                                <span><i class="fas fa-star"></i> 5.0 (298)</span>
+                            </div>
+                            <a href="contact.html" class="btn btn-primary btn-small">Enroll Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Learning Paths -->
+    <section class="learning-paths">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Learning Paths</h2>
+                <p class="section-description">Structured curricula to achieve your career goals</p>
+            </div>
+
+            <div class="paths-grid">
+                <div class="path-card">
+                    <div class="path-icon">
+                        <i class="fas fa-route"></i>
+                    </div>
+                    <h3>UI/UX Designer Track</h3>
+                    <p>Complete path from beginner to professional UI/UX designer with hands-on projects and portfolio building.</p>
+                    <div class="path-info">
+                        <span>6 Courses</span>
+                        <span>•</span>
+                        <span>120 Hours</span>
+                        <span>•</span>
+                        <span>Certificate</span>
+                    </div>
+                    <a href="contact.html" class="btn btn-secondary btn-full">Start Learning</a>
+                </div>
+
+                <div class="path-card">
+                    <div class="path-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>Mobile Designer Track</h3>
+                    <p>Specialize in mobile app design for iOS and Android with focus on platform-specific patterns.</p>
+                    <div class="path-info">
+                        <span>4 Courses</span>
+                        <span>•</span>
+                        <span>80 Hours</span>
+                        <span>•</span>
+                        <span>Certificate</span>
+                    </div>
+                    <a href="contact.html" class="btn btn-secondary btn-full">Start Learning</a>
+                </div>
+
+                <div class="path-card">
+                    <div class="path-icon">
+                        <i class="fas fa-layer-group"></i>
+                    </div>
+                    <h3>Design Systems Track</h3>
+                    <p>Learn to create, maintain, and scale design systems for products and organizations.</p>
+                    <div class="path-info">
+                        <span>5 Courses</span>
+                        <span>•</span>
+                        <span>100 Hours</span>
+                        <span>•</span>
+                        <span>Certificate</span>
+                    </div>
+                    <a href="contact.html" class="btn btn-secondary btn-full">Start Learning</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits -->
+    <section class="benefits-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Why Learn With Us</h2>
+                <p class="section-description">Benefits of joining our design academy</p>
+            </div>
+
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <i class="fas fa-chalkboard-teacher"></i>
+                    <h3>Expert Instructors</h3>
+                    <p>Learn from industry professionals with years of real-world experience</p>
+                </div>
+                <div class="benefit-card">
+                    <i class="fas fa-project-diagram"></i>
+                    <h3>Hands-On Projects</h3>
+                    <p>Build a portfolio with real projects that demonstrate your skills</p>
+                </div>
+                <div class="benefit-card">
+                    <i class="fas fa-users"></i>
+                    <h3>Community Support</h3>
+                    <p>Join a community of designers for networking and collaboration</p>
+                </div>
+                <div class="benefit-card">
+                    <i class="fas fa-certificate"></i>
+                    <h3>Certification</h3>
+                    <p>Earn recognized certificates to boost your professional credibility</p>
+                </div>
+                <div class="benefit-card">
+                    <i class="fas fa-infinity"></i>
+                    <h3>Lifetime Access</h3>
+                    <p>Get unlimited access to course materials and future updates</p>
+                </div>
+                <div class="benefit-card">
+                    <i class="fas fa-headset"></i>
+                    <h3>1-on-1 Mentorship</h3>
+                    <p>Personal guidance from mentors to accelerate your growth</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Start Your Design Journey Today</h2>
+                <p>Join thousands of students learning design with industry experts</p>
+                <div class="cta-buttons">
+                    <a href="contact.html" class="btn btn-primary">Enroll Now</a>
+                    <a href="contact.html" class="btn btn-secondary">Request Info</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3>ayman taher</h3>
+                </div>
+                <nav class="footer-nav">
+                    <a href="index.html">Home</a>
+                    <a href="about.html">About</a>
+                    <a href="academy.html">Academy</a>
+                    <a href="services.html">Services</a>
+                    <a href="contact.html">Contact</a>
+                </nav>
+                <p class="footer-copyright">© 2024 Ayman Taher</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="js/script.js"></script>
+</body>
+</html>
