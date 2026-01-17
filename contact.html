@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Contact Ayman Taher - Get in Touch">
+    <meta name="author" content="Ayman Taher">
+    <title>Contact | Ayman Taher</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <a href="index.html">
+                    <i class="fas fa-home-alt"></i>
+                </a>
+            </div>
+            <button class="nav-toggle" id="navToggle">
+                <i class="fas fa-grip-vertical"></i>
+            </button>
+            <a href="contact.html" class="btn btn-primary btn-nav">Book A Consultation</a>
+        </div>
+    </nav>
+
+    <!-- Full Screen Menu Overlay -->
+    <div class="menu-overlay" id="menuOverlay">
+        <div class="menu-content">
+            <div class="menu-header">
+                <span class="menu-label">Menu.</span>
+            </div>
+            <ul class="menu-list">
+                <li><a href="index.html" class="menu-link">HOME</a></li>
+                <li><a href="about.html" class="menu-link">ABOUT</a></li>
+                <li><a href="projects.html" class="menu-link">PROJECTS</a></li>
+                <li><a href="services.html" class="menu-link">SERVICES</a></li>
+                <li><a href="academy.html" class="menu-link">ACADEMY</a></li>
+                <li><a href="index.html#blogs" class="menu-link">BLOGS & NEWS</a></li>
+                <li><a href="contact.html" class="menu-link active">CONTACT</a></li>
+            </ul>
+            <div class="menu-footer">
+                <div class="menu-social">
+                    <a href="#" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" target="_blank" aria-label="Dribbble"><i class="fab fa-dribbble"></i></a>
+                    <a href="#" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                </div>
+                <div class="menu-actions">
+                    <a href="contact.html" class="btn btn-primary">Start a New Project</a>
+                    <a href="contact.html" class="btn btn-secondary">Book Appointment</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Hero -->
+    <section class="page-hero">
+        <div class="container">
+            <h1 class="page-title">Let's start something<br>new together</h1>
+            <p class="page-subtitle">Hey Hi me or do you want to get started with your project and you need my help? Feel free to contact me.</p>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-page">
+        <div class="container">
+            <div class="contact-layout">
+                <!-- Contact Info -->
+                <div class="contact-info-section">
+                    <h2>Get In Touch</h2>
+                    <p>I'm always open to discussing product design work, partnership opportunities, or creative education projects.</p>
+
+                    <div class="contact-methods">
+                        <div class="contact-info-card">
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <p class="contact-label">CHAT WITH ME</p>
+                                <p class="contact-value">kevin.gilbert.com</p>
+                            </div>
+                        </div>
+                        <div class="contact-info-card">
+                            <i class="fas fa-phone"></i>
+                            <div>
+                                <p class="contact-label">CALL ME</p>
+                                <p class="contact-value">+1-202-555-0190</p>
+                            </div>
+                        </div>
+                        <div class="contact-info-card">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                <p class="contact-label">LOCATION</p>
+                                <p class="contact-value">Cairo, Egypt</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="social-connect">
+                        <h3>Follow Me</h3>
+                        <div class="social-links-large">
+                            <a href="#" target="_blank"><i class="fab fa-linkedin-in"></i> LinkedIn</a>
+                            <a href="#" target="_blank"><i class="fab fa-dribbble"></i> Dribbble</a>
+                            <a href="#" target="_blank"><i class="fab fa-twitter"></i> Twitter</a>
+                            <a href="#" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
+                            <a href="#" target="_blank"><i class="fab fa-behance"></i> Behance</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Form -->
+                <div class="contact-form-section">
+                    <form class="contact-form-main" id="contactFormMain">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="firstName">First Name *</label>
+                                <input type="text" id="firstName" name="firstName" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="lastName">Last Name *</label>
+                                <input type="text" id="lastName" name="lastName" required>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="email">Email *</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Phone Number</label>
+                                <input type="tel" id="phone" name="phone">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="company">Company / Organization</label>
+                            <input type="text" id="company" name="company">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="service">Service Interested In *</label>
+                            <select id="service" name="service" required>
+                                <option value="">Select a service</option>
+                                <option value="ux-ui-design">UX/UI Design</option>
+                                <option value="consultation">Design Consultation</option>
+                                <option value="education">Education & Training</option>
+                                <option value="product-strategy">Product Strategy</option>
+                                <option value="mobile-design">Mobile App Design</option>
+                                <option value="workshops">Team Workshops</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="budget">Project Budget</label>
+                            <select id="budget" name="budget">
+                                <option value="">Select budget range</option>
+                                <option value="under-5k">Under $5,000</option>
+                                <option value="5k-10k">$5,000 - $10,000</option>
+                                <option value="10k-25k">$10,000 - $25,000</option>
+                                <option value="25k-50k">$25,000 - $50,000</option>
+                                <option value="50k-plus">$50,000+</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message">Project Details *</label>
+                            <textarea id="message" name="message" rows="6" required placeholder="Tell me about your project, goals, and timeline..."></textarea>
+                        </div>
+
+                        <div class="form-group checkbox-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="newsletter">
+                                <span>Subscribe to newsletter for design tips and updates</span>
+                            </label>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-full btn-large">
+                            Send Message <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Frequently Asked Questions</h2>
+                <p class="section-description">Quick answers to common questions</p>
+            </div>
+
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <h4>What is your typical project timeline?</h4>
+                    <p>Project timelines vary based on scope and complexity. A typical website design project takes 4-8 weeks, while larger products may take 3-6 months.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>Do you work with international clients?</h4>
+                    <p>Yes! I work with clients worldwide and am comfortable working across different time zones and communication preferences.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>What is your design process?</h4>
+                    <p>I follow a user-centered design process: Research → Strategy → Design → Testing → Delivery, with regular client collaboration throughout.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>Do you offer ongoing support after project completion?</h4>
+                    <p>Yes, I provide support packages and retainer options for ongoing design needs, updates, and improvements.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>Can you help with development as well?</h4>
+                    <p>While I focus on design, I have trusted development partners I can recommend and collaborate with for implementation.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>What tools do you use?</h4>
+                    <p>I primarily use Figma for design, with additional tools like Miro for workshops, Notion for documentation, and various prototyping tools.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3>ayman taher</h3>
+                </div>
+                <nav class="footer-nav">
+                    <a href="index.html">Home</a>
+                    <a href="about.html">About</a>
+                    <a href="academy.html">Academy</a>
+                    <a href="services.html">Services</a>
+                    <a href="contact.html">Contact</a>
+                </nav>
+                <p class="footer-copyright">© 2024 Ayman Taher</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="js/script.js"></script>
+</body>
+</html>

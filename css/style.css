@@ -1641,3 +1641,790 @@ button {
         justify-content: center;
     }
 }
+
+/* ===============================
+   Page Hero Section
+   =============================== */
+.page-hero {
+    padding: 10rem 0 5rem;
+    background: var(--dark-bg);
+    text-align: center;
+}
+
+.page-title {
+    font-size: 4rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+}
+
+.page-subtitle {
+    font-size: 1.2rem;
+    color: var(--text-gray);
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+/* ===============================
+   Skills & Expertise Page
+   =============================== */
+.skills-expertise {
+    padding: 5rem 0;
+    background: var(--dark-bg);
+}
+
+.skills-grid-detailed {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+}
+
+.skill-category {
+    background: var(--dark-card);
+    border: 1px solid var(--border-dark);
+    border-radius: 16px;
+    padding: 2.5rem;
+}
+
+.skill-category h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    color: var(--text-white);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.skill-category h3 i {
+    color: var(--primary-green);
+}
+
+.skill-category ul {
+    list-style: none;
+    padding: 0;
+}
+
+.skill-category li {
+    padding: 0.8rem 0;
+    border-bottom: 1px solid var(--border-dark);
+    color: var(--text-gray);
+}
+
+.skill-category li:last-child {
+    border-bottom: none;
+}
+
+/* ===============================
+   Philosophy Section
+   =============================== */
+.philosophy {
+    padding: 5rem 0;
+    background: var(--dark-card);
+}
+
+.philosophy-content {
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.philosophy-content h2 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    color: var(--text-white);
+}
+
+.philosophy-content blockquote {
+    font-size: 1.5rem;
+    font-style: italic;
+    color: var(--text-white);
+    margin: 2rem 0;
+    padding-left: 2rem;
+    border-left: 4px solid var(--primary-green);
+    text-align: left;
+}
+
+.philosophy-content > p {
+    color: var(--text-gray);
+    line-height: 1.8;
+    margin-bottom: 3rem;
+}
+
+.philosophy-principles {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.principle {
+    text-align: center;
+}
+
+.principle i {
+    font-size: 3rem;
+    color: var(--primary-green);
+    margin-bottom: 1rem;
+}
+
+.principle h4 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-white);
+}
+
+.principle p {
+    color: var(--text-gray);
+    font-size: 0.9rem;
+}
+
+/* ===============================
+   Process Section
+   =============================== */
+.process-section {
+    padding: 5rem 0;
+    background: var(--dark-bg);
+}
+
+.process-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 2rem;
+}
+
+.process-step {
+    text-align: center;
+}
+
+.step-number {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: rgba(16, 185, 129, 0.1);
+    border: 2px solid var(--primary-green);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary-green);
+    margin: 0 auto 1.5rem;
+}
+
+.process-step h3 {
+    font-size: 1.1rem;
+    margin-bottom: 0.8rem;
+    color: var(--text-white);
+}
+
+.process-step p {
+    font-size: 0.9rem;
+    color: var(--text-gray);
+    line-height: 1.6;
+}
+
+/* ===============================
+   Service Features List
+   =============================== */
+.service-features {
+    list-style: none;
+    padding: 0;
+    margin: 1.5rem 0;
+}
+
+.service-features li {
+    padding: 0.6rem 0;
+    color: var(--text-gray);
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+}
+
+.service-features li::before {
+    content: "✓";
+    color: var(--primary-green);
+    font-weight: 700;
+    margin-right: 0.8rem;
+}
+
+/* ===============================
+   How It Works & Steps
+   =============================== */
+.how-it-works {
+    padding: 5rem 0;
+    background: var(--dark-card);
+}
+
+.steps-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+}
+
+.step-card {
+    background: var(--dark-bg);
+    border: 1px solid var(--border-dark);
+    border-radius: 16px;
+    padding: 2rem;
+    text-align: center;
+    transition: var(--transition);
+}
+
+.step-card:hover {
+    border-color: var(--primary-green);
+    transform: translateY(-5px);
+}
+
+.step-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: var(--primary-green);
+    color: var(--dark-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0 auto 1.5rem;
+}
+
+.step-card h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.8rem;
+    color: var(--text-white);
+}
+
+.step-card p {
+    color: var(--text-gray);
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
+/* ===============================
+   Pricing Section
+   =============================== */
+.pricing-section {
+    padding: 5rem 0;
+    background: var(--dark-bg);
+}
+
+.pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+}
+
+.pricing-card {
+    background: var(--dark-card);
+    border: 1px solid var(--border-dark);
+    border-radius: 16px;
+    padding: 3rem 2rem;
+    text-align: center;
+    position: relative;
+    transition: var(--transition);
+}
+
+.pricing-card:hover,
+.pricing-card.featured {
+    border-color: var(--primary-green);
+    transform: scale(1.05);
+}
+
+.featured-badge {
+    position: absolute;
+    top: -15px;
+    right: 20px;
+    background: var(--primary-green);
+    color: var(--dark-bg);
+    padding: 0.5rem 1.5rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 700;
+}
+
+.pricing-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    color: var(--text-white);
+}
+
+.price {
+    margin: 2rem 0;
+}
+
+.currency {
+    font-size: 1.5rem;
+    color: var(--text-gray);
+    vertical-align: super;
+}
+
+.amount {
+    font-size: 4rem;
+    font-weight: 700;
+    color: var(--text-white);
+}
+
+.period {
+    font-size: 1.2rem;
+    color: var(--text-gray);
+}
+
+.pricing-features {
+    list-style: none;
+    padding: 0;
+    margin: 2rem 0 3rem;
+    text-align: left;
+}
+
+.pricing-features li {
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--border-dark);
+    color: var(--text-gray);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.pricing-features li:last-child {
+    border-bottom: none;
+}
+
+.pricing-features i {
+    color: var(--primary-green);
+    font-size: 1.2rem;
+}
+
+.btn-full {
+    width: 100%;
+}
+
+/* ===============================
+   Course Details
+   =============================== */
+.course-description {
+    color: var(--text-gray);
+    margin: 1rem 0;
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+.course-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border-dark);
+}
+
+.course-stats {
+    display: flex;
+    gap: 1.5rem;
+    font-size: 0.85rem;
+    color: var(--text-gray);
+}
+
+.course-stats span {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.course-stats i {
+    color: var(--primary-green);
+}
+
+/* ===============================
+   Learning Paths
+   =============================== */
+.learning-paths {
+    padding: 5rem 0;
+    background: var(--dark-card);
+}
+
+.paths-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+}
+
+.path-card {
+    background: var(--dark-bg);
+    border: 1px solid var(--border-dark);
+    border-radius: 16px;
+    padding: 2.5rem;
+    transition: var(--transition);
+}
+
+.path-card:hover {
+    border-color: var(--primary-green);
+    transform: translateY(-5px);
+}
+
+.path-icon {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background: rgba(16, 185, 129, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+}
+
+.path-icon i {
+    font-size: 2rem;
+    color: var(--primary-green);
+}
+
+.path-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: var(--text-white);
+}
+
+.path-card p {
+    color: var(--text-gray);
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+}
+
+.path-info {
+    display: flex;
+    gap: 0.8rem;
+    align-items: center;
+    color: var(--text-gray);
+    font-size: 0.9rem;
+    margin-bottom: 2rem;
+}
+
+/* ===============================
+   Benefits Section
+   =============================== */
+.benefits-section {
+    padding: 5rem 0;
+    background: var(--dark-bg);
+}
+
+.benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+}
+
+.benefit-card {
+    background: var(--dark-card);
+    border: 1px solid var(--border-dark);
+    border-radius: 16px;
+    padding: 2.5rem;
+    text-align: center;
+    transition: var(--transition);
+}
+
+.benefit-card:hover {
+    border-color: var(--primary-green);
+    transform: translateY(-5px);
+}
+
+.benefit-card i {
+    font-size: 3rem;
+    color: var(--primary-green);
+    margin-bottom: 1.5rem;
+}
+
+.benefit-card h3 {
+    font-size: 1.3rem;
+    margin-bottom: 0.8rem;
+    color: var(--text-white);
+}
+
+.benefit-card p {
+    color: var(--text-gray);
+    line-height: 1.6;
+}
+
+/* ===============================
+   Contact Page
+   =============================== */
+.contact-page {
+    padding: 5rem 0;
+    background: var(--dark-bg);
+}
+
+.contact-layout {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 4rem;
+}
+
+.contact-info-section h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: var(--text-white);
+}
+
+.contact-info-section > p {
+    color: var(--text-gray);
+    line-height: 1.7;
+    margin-bottom: 3rem;
+}
+
+.contact-methods {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+}
+
+.social-connect h3 {
+    font-size: 1.3rem;
+    margin-bottom: 1.5rem;
+    color: var(--text-white);
+}
+
+.social-links-large {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.social-links-large a {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    background: var(--dark-card);
+    border: 1px solid var(--border-dark);
+    border-radius: 8px;
+    color: var(--text-white);
+    transition: var(--transition);
+    font-weight: 600;
+}
+
+.social-links-large a:hover {
+    border-color: var(--primary-green);
+    background: rgba(16, 185, 129, 0.1);
+}
+
+.social-links-large i {
+    font-size: 1.2rem;
+    color: var(--primary-green);
+}
+
+/* Contact Form */
+.contact-form-section {
+    background: var(--dark-card);
+    border: 1px solid var(--border-dark);
+    border-radius: 16px;
+    padding: 3rem;
+}
+
+.contact-form-main {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--text-white);
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 0.9rem;
+    background: var(--dark-bg);
+    border: 1px solid var(--border-dark);
+    border-radius: 8px;
+    color: var(--text-white);
+    font-size: 1rem;
+    transition: var(--transition);
+    font-family: inherit;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--primary-green);
+}
+
+.form-group textarea {
+    resize: vertical;
+}
+
+.checkbox-group {
+    margin-top: 1rem;
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    cursor: pointer;
+}
+
+.checkbox-label input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.checkbox-label span {
+    color: var(--text-gray);
+    font-size: 0.9rem;
+}
+
+.btn-large {
+    padding: 1.1rem 2rem;
+    font-size: 1.05rem;
+}
+
+/* FAQ Section */
+.faq-section {
+    padding: 5rem 0;
+    background: var(--dark-card);
+}
+
+.faq-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+}
+
+.faq-item {
+    background: var(--dark-bg);
+    border: 1px solid var(--border-dark);
+    border-radius: 12px;
+    padding: 2rem;
+}
+
+.faq-item h4 {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    color: var(--text-white);
+}
+
+.faq-item p {
+    color: var(--text-gray);
+    line-height: 1.7;
+}
+
+/* ===============================
+   CTA Section
+   =============================== */
+.cta-section {
+    padding: 5rem 0;
+    background: var(--dark-card);
+}
+
+.cta-content {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.cta-content h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: var(--text-white);
+}
+
+.cta-content p {
+    font-size: 1.1rem;
+    color: var(--text-gray);
+    margin-bottom: 2rem;
+}
+
+.cta-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+/* ===============================
+   Responsive - New Pages
+   =============================== */
+@media (max-width: 1024px) {
+    .skills-grid-detailed {
+        grid-template-columns: 1fr;
+    }
+
+    .philosophy-principles {
+        grid-template-columns: 1fr;
+    }
+
+    .process-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .pricing-grid,
+    .paths-grid,
+    .benefits-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .faq-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .page-title {
+        font-size: 2.5rem;
+    }
+
+    .steps-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .process-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+
+    .cta-buttons {
+        flex-direction: column;
+    }
+
+    .cta-buttons .btn {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .page-title {
+        font-size: 2rem;
+    }
+
+    .page-subtitle {
+        font-size: 1rem;
+    }
+
+    .steps-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-form-section {
+        padding: 1.5rem;
+    }
+}
