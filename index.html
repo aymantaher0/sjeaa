@@ -3,45 +3,206 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LMS Platform - Modern Learning Management</title>
+    <meta name="description" content="Personal Portfolio - Showcasing my work and skills">
+    <meta name="author" content="Your Name">
+    <title>Portfolio | Your Name</title>
 
     <!-- CSS -->
-    <link rel="stylesheet" href="css/design-system.css">
-    <link rel="stylesheet" href="css/components.css">
-    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <!-- App Container -->
-    <div id="app">
-        <!-- Toast Container -->
-        <div id="toast-container"></div>
-
-        <!-- Loading Screen -->
-        <div id="loading-screen" class="loading-screen">
-            <div class="spinner"></div>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <a href="#home">Portfolio</a>
+            </div>
+            <button class="nav-toggle" id="navToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#skills" class="nav-link">Skills</a></li>
+                <li><a href="#portfolio" class="nav-link">Portfolio</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
         </div>
+    </nav>
 
-        <!-- Main Content (Dynamically Rendered) -->
-        <div id="main-content"></div>
-    </div>
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">Hi, I'm <span class="highlight">Your Name</span></h1>
+                <p class="hero-subtitle">Web Developer & Designer</p>
+                <p class="hero-description">I create beautiful and functional web experiences</p>
+                <div class="hero-buttons">
+                    <a href="#portfolio" class="btn btn-primary">View My Work</a>
+                    <a href="#contact" class="btn btn-secondary">Contact Me</a>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <!-- Modal Container -->
-    <div id="modal-container"></div>
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-content">
+                <div class="about-image">
+                    <img src="assets/images/profile.jpg" alt="Profile Picture">
+                </div>
+                <div class="about-text">
+                    <h3>Hello! I'm a passionate developer</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                    <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                    <a href="#contact" class="btn btn-primary">Get In Touch</a>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <!-- Scripts -->
-    <script type="module" src="js/utils/storage.js"></script>
-    <script type="module" src="js/utils/state.js"></script>
-    <script type="module" src="js/components/ui.js"></script>
-    <script type="module" src="js/components/navigation.js"></script>
-    <script type="module" src="js/modules/auth.js"></script>
-    <script type="module" src="js/modules/dashboard.js"></script>
-    <script type="module" src="js/modules/courses.js"></script>
-    <script type="module" src="js/modules/learners.js"></script>
-    <script type="module" src="js/modules/quizzes.js"></script>
-    <script type="module" src="js/modules/assignments.js"></script>
-    <script type="module" src="js/modules/certificates.js"></script>
-    <script type="module" src="js/modules/sessions.js"></script>
-    <script type="module" src="js/modules/payments.js"></script>
-    <script type="module" src="js/app.js"></script>
+    <!-- Skills Section -->
+    <section id="skills" class="skills">
+        <div class="container">
+            <h2 class="section-title">My Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <i class="fab fa-html5"></i>
+                    <h3>HTML5</h3>
+                    <p>Semantic and accessible markup</p>
+                </div>
+                <div class="skill-card">
+                    <i class="fab fa-css3-alt"></i>
+                    <h3>CSS3</h3>
+                    <p>Modern styling and animations</p>
+                </div>
+                <div class="skill-card">
+                    <i class="fab fa-js"></i>
+                    <h3>JavaScript</h3>
+                    <p>Interactive and dynamic functionality</p>
+                </div>
+                <div class="skill-card">
+                    <i class="fab fa-react"></i>
+                    <h3>React</h3>
+                    <p>Component-based development</p>
+                </div>
+                <div class="skill-card">
+                    <i class="fab fa-node"></i>
+                    <h3>Node.js</h3>
+                    <p>Server-side development</p>
+                </div>
+                <div class="skill-card">
+                    <i class="fas fa-database"></i>
+                    <h3>Database</h3>
+                    <p>Data management and storage</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="portfolio">
+        <div class="container">
+            <h2 class="section-title">My Projects</h2>
+            <div class="portfolio-grid">
+                <div class="portfolio-item">
+                    <img src="assets/images/project1.jpg" alt="Project 1">
+                    <div class="portfolio-overlay">
+                        <h3>Project Title 1</h3>
+                        <p>Web Development</p>
+                        <a href="#" class="btn btn-small">View Project</a>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="assets/images/project2.jpg" alt="Project 2">
+                    <div class="portfolio-overlay">
+                        <h3>Project Title 2</h3>
+                        <p>Web Design</p>
+                        <a href="#" class="btn btn-small">View Project</a>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="assets/images/project3.jpg" alt="Project 3">
+                    <div class="portfolio-overlay">
+                        <h3>Project Title 3</h3>
+                        <p>UI/UX Design</p>
+                        <a href="#" class="btn btn-small">View Project</a>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="assets/images/project4.jpg" alt="Project 4">
+                    <div class="portfolio-overlay">
+                        <h3>Project Title 4</h3>
+                        <p>Full Stack App</p>
+                        <a href="#" class="btn btn-small">View Project</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <h3>Email</h3>
+                        <p>your.email@example.com</p>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <h3>Phone</h3>
+                        <p>+1 234 567 8900</p>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <h3>Location</h3>
+                        <p>City, Country</p>
+                    </div>
+                    <div class="social-links">
+                        <a href="#" target="_blank"><i class="fab fa-github"></i></a>
+                        <a href="#" target="_blank"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
+                        <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <form class="contact-form" id="contactForm">
+                    <div class="form-group">
+                        <input type="text" id="name" name="name" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="email" name="email" placeholder="Your Email" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="subject" name="subject" placeholder="Subject" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea id="message" name="message" rows="5" placeholder="Your Message" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Your Name. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="js/script.js"></script>
 </body>
 </html>
