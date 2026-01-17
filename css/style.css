@@ -182,11 +182,13 @@ button {
     color: var(--text-primary);
     font-size: 1.5rem;
     display: none;
-    transition: var(--transition-base);
+    transition: all var(--transition-base);
+    cursor: pointer;
 }
 
 .nav-toggle:hover {
     opacity: 0.7;
+    transform: scale(1.05);
 }
 
 .btn-nav {
@@ -1057,6 +1059,85 @@ button {
     }
 }
 
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes scaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Scroll Animation Classes */
+.fade-in-on-scroll {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1),
+                transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.fade-in-on-scroll.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.slide-in-left {
+    opacity: 0;
+    transform: translateX(-30px);
+    transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1),
+                transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.slide-in-left.visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.slide-in-right {
+    opacity: 0;
+    transform: translateX(30px);
+    transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1),
+                transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.slide-in-right.visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
 /* ===============================
    Responsive Design
    =============================== */
@@ -1241,7 +1322,24 @@ button {
 
 .menu-list li {
     margin: var(--space-5) 0;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+                transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
+
+.menu-overlay.active .menu-list li {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.menu-overlay.active .menu-list li:nth-child(1) { transition-delay: 0.1s; }
+.menu-overlay.active .menu-list li:nth-child(2) { transition-delay: 0.15s; }
+.menu-overlay.active .menu-list li:nth-child(3) { transition-delay: 0.2s; }
+.menu-overlay.active .menu-list li:nth-child(4) { transition-delay: 0.25s; }
+.menu-overlay.active .menu-list li:nth-child(5) { transition-delay: 0.3s; }
+.menu-overlay.active .menu-list li:nth-child(6) { transition-delay: 0.35s; }
+.menu-overlay.active .menu-list li:nth-child(7) { transition-delay: 0.4s; }
 
 .menu-link {
     font-size: 3rem;
@@ -1250,6 +1348,23 @@ button {
     transition: all var(--transition-base);
     display: inline-block;
     letter-spacing: -0.02em;
+    position: relative;
+}
+
+.menu-link::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 0;
+    height: 3px;
+    background: var(--primary-green);
+    transition: width var(--transition-base);
+}
+
+.menu-link:hover::after,
+.menu-link.active::after {
+    width: 100%;
 }
 
 .menu-link:hover,
@@ -1265,6 +1380,15 @@ button {
     flex-direction: column;
     align-items: center;
     gap: 2rem;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1) 0.45s,
+                transform 0.5s cubic-bezier(0.4, 0, 0.2, 1) 0.45s;
+}
+
+.menu-overlay.active .menu-footer {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .menu-social {
@@ -1287,7 +1411,8 @@ button {
 .menu-social a:hover {
     border-color: var(--primary-green);
     color: var(--primary-green);
-    transform: translateY(-3px);
+    transform: translateY(-3px) scale(1.05);
+    background: var(--green-subtle);
 }
 
 .menu-actions {

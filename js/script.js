@@ -23,18 +23,70 @@ const navToggle = document.getElementById('navToggle');
 const menuOverlay = document.getElementById('menuOverlay');
 const menuLinks = document.querySelectorAll('.menu-link');
 
+// Set active menu link based on current page
+function setActiveMenuLink() {
+    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+    menuLinks.forEach(link => {
+        const linkHref = link.getAttribute('href');
+        if (linkHref === currentPage ||
+            (currentPage === '' && linkHref === 'index.html') ||
+            (currentPage === 'index.html' && linkHref === 'index.html')) {
+            link.classList.add('active');
+        } else if (linkHref.startsWith('#')) {
+            // Handle hash links on index page
+            if (currentPage === 'index.html' || currentPage === '') {
+                link.classList.remove('active');
+            }
+        } else {
+            link.classList.remove('active');
+        }
+    });
+}
+
+// Call on page load
+setActiveMenuLink();
+
 if (navToggle && menuOverlay) {
     // Toggle menu overlay
-    navToggle.addEventListener('click', () => {
+    navToggle.addEventListener('click', (e) => {
+        e.preventDefault();
         menuOverlay.classList.toggle('active');
         document.body.style.overflow = menuOverlay.classList.contains('active') ? 'hidden' : '';
+
+        // Add rotation animation to menu icon
+        navToggle.style.transform = menuOverlay.classList.contains('active') ? 'rotate(90deg)' : 'rotate(0deg)';
     });
 
     // Close menu when clicking on a link
     menuLinks.forEach(link => {
-        link.addEventListener('click', () => {
-            menuOverlay.classList.remove('active');
-            document.body.style.overflow = '';
+        link.addEventListener('click', (e) => {
+            // Don't prevent default for page navigation
+            const href = link.getAttribute('href');
+
+            // Only close menu for hash links within the same page
+            if (href.startsWith('#')) {
+                e.preventDefault();
+                const target = document.querySelector(href);
+                if (target) {
+                    menuOverlay.classList.remove('active');
+                    document.body.style.overflow = '';
+                    navToggle.style.transform = 'rotate(0deg)';
+
+                    // Smooth scroll to target
+                    setTimeout(() => {
+                        const offsetTop = target.offsetTop - 80;
+                        window.scrollTo({
+                            top: offsetTop,
+                            behavior: 'smooth'
+                        });
+                    }, 300);
+                }
+            } else {
+                // For page navigation, just close the menu
+                menuOverlay.classList.remove('active');
+                document.body.style.overflow = '';
+                navToggle.style.transform = 'rotate(0deg)';
+            }
         });
     });
 
@@ -43,6 +95,7 @@ if (navToggle && menuOverlay) {
         if (e.target === menuOverlay) {
             menuOverlay.classList.remove('active');
             document.body.style.overflow = '';
+            navToggle.style.transform = 'rotate(0deg)';
         }
     });
 
@@ -51,6 +104,7 @@ if (navToggle && menuOverlay) {
         if (e.key === 'Escape' && menuOverlay.classList.contains('active')) {
             menuOverlay.classList.remove('active');
             document.body.style.overflow = '';
+            navToggle.style.transform = 'rotate(0deg)';
         }
     });
 }
@@ -96,38 +150,62 @@ tabButtons.forEach(button => {
 });
 
 // ===============================
-// Scroll Animations
+// Enhanced Scroll Animations
 // ===============================
 const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
+    threshold: 0.15,
+    rootMargin: '0px 0px -100px 0px'
 };
 
-const observer = new IntersectionObserver((entries) => {
+const scrollObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
+            entry.target.classList.add('visible');
+            // Optionally unobserve after animation
+            scrollObserver.unobserve(entry.target);
         }
     });
 }, observerOptions);
 
-// Observe cards for animation
-const animatedElements = document.querySelectorAll(`
+// Observe all elements with animation classes
+const fadeInElements = document.querySelectorAll('.fade-in-on-scroll');
+const slideLeftElements = document.querySelectorAll('.slide-in-left');
+const slideRightElements = document.querySelectorAll('.slide-in-right');
+
+[...fadeInElements, ...slideLeftElements, ...slideRightElements].forEach(el => {
+    scrollObserver.observe(el);
+});
+
+// Legacy animation support for cards
+const legacyAnimatedElements = document.querySelectorAll(`
     .stat-card,
     .journey-logo,
     .activity-card,
     .course-card,
     .case-study-card,
     .blog-card,
-    .contact-info-card
+    .contact-info-card,
+    .service-card
 `);
 
-animatedElements.forEach(el => {
+legacyAnimatedElements.forEach(el => {
     el.style.opacity = '0';
     el.style.transform = 'translateY(30px)';
-    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-    observer.observe(el);
+    el.style.transition = 'opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
+});
+
+const legacyObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+            legacyObserver.unobserve(entry.target);
+        }
+    });
+}, observerOptions);
+
+legacyAnimatedElements.forEach(el => {
+    legacyObserver.observe(el);
 });
 
 // ===============================
