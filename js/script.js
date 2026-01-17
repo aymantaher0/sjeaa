@@ -1,39 +1,32 @@
 // ===============================
-// Navigation Toggle
+// Smooth Scroll
+// ===============================
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+
+        if (target) {
+            const offsetTop = target.offsetTop - 80;
+            window.scrollTo({
+                top: offsetTop,
+                behavior: 'smooth'
+            });
+        }
+    });
+});
+
+// ===============================
+// Mobile Navigation Toggle
 // ===============================
 const navToggle = document.getElementById('navToggle');
-const navMenu = document.getElementById('navMenu');
-const navLinks = document.querySelectorAll('.nav-link');
+const navMenu = document.querySelector('.nav-menu');
 
-// Toggle mobile menu
 if (navToggle) {
     navToggle.addEventListener('click', () => {
         navMenu.classList.toggle('active');
-
-        // Animate hamburger
-        const spans = navToggle.querySelectorAll('span');
-        if (navMenu.classList.contains('active')) {
-            spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
-            spans[1].style.opacity = '0';
-            spans[2].style.transform = 'rotate(-45deg) translate(7px, -6px)';
-        } else {
-            spans[0].style.transform = 'none';
-            spans[1].style.opacity = '1';
-            spans[2].style.transform = 'none';
-        }
     });
 }
-
-// Close menu when clicking on a link
-navLinks.forEach(link => {
-    link.addEventListener('click', () => {
-        navMenu.classList.remove('active');
-        const spans = navToggle.querySelectorAll('span');
-        spans[0].style.transform = 'none';
-        spans[1].style.opacity = '1';
-        spans[2].style.transform = 'none';
-    });
-});
 
 // ===============================
 // Navbar Scroll Effect
@@ -44,56 +37,34 @@ let lastScroll = 0;
 window.addEventListener('scroll', () => {
     const currentScroll = window.pageYOffset;
 
-    // Add shadow on scroll
     if (currentScroll > 50) {
-        navbar.classList.add('scrolled');
+        navbar.style.boxShadow = '0 4px 6px -1px rgba(0, 0, 0, 0.5)';
     } else {
-        navbar.classList.remove('scrolled');
+        navbar.style.boxShadow = 'none';
     }
 
     lastScroll = currentScroll;
 });
 
 // ===============================
-// Active Navigation Link
+// Tabs Functionality (Blogs & Resources)
 // ===============================
-const sections = document.querySelectorAll('section');
+const tabButtons = document.querySelectorAll('.tab-btn');
 
-window.addEventListener('scroll', () => {
-    let current = '';
+tabButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        // Remove active class from all buttons
+        tabButtons.forEach(btn => btn.classList.remove('active'));
 
-    sections.forEach(section => {
-        const sectionTop = section.offsetTop;
-        const sectionHeight = section.clientHeight;
+        // Add active class to clicked button
+        button.classList.add('active');
 
-        if (window.pageYOffset >= sectionTop - 100) {
-            current = section.getAttribute('id');
-        }
-    });
+        // Get the tab name
+        const tabName = button.getAttribute('data-tab');
 
-    navLinks.forEach(link => {
-        link.classList.remove('active');
-        if (link.getAttribute('href') === `#${current}`) {
-            link.classList.add('active');
-        }
-    });
-});
-
-// ===============================
-// Smooth Scroll
-// ===============================
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-
-        if (target) {
-            const offsetTop = target.offsetTop - 60;
-            window.scrollTo({
-                top: offsetTop,
-                behavior: 'smooth'
-            });
-        }
+        // Here you would typically show/hide content based on the tab
+        // For now, we'll just log it
+        console.log('Tab clicked:', tabName);
     });
 });
 
@@ -102,7 +73,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 // ===============================
 const observerOptions = {
     threshold: 0.1,
-    rootMargin: '0px 0px -100px 0px'
+    rootMargin: '0px 0px -50px 0px'
 };
 
 const observer = new IntersectionObserver((entries) => {
@@ -114,169 +85,81 @@ const observer = new IntersectionObserver((entries) => {
     });
 }, observerOptions);
 
-// Observe elements for animation
-const animateElements = document.querySelectorAll('.skill-card, .portfolio-item, .contact-item');
-animateElements.forEach(el => {
+// Observe cards for animation
+const animatedElements = document.querySelectorAll(`
+    .stat-card,
+    .journey-logo,
+    .activity-card,
+    .course-card,
+    .case-study-card,
+    .blog-card,
+    .contact-info-card
+`);
+
+animatedElements.forEach(el => {
     el.style.opacity = '0';
-    el.style.transform = 'translateY(20px)';
+    el.style.transform = 'translateY(30px)';
     el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
     observer.observe(el);
 });
 
 // ===============================
-// Contact Form Handling
+// Calendar Items Hover Effect
 // ===============================
-const contactForm = document.getElementById('contactForm');
+const calendarItems = document.querySelectorAll('.calendar-item');
 
-if (contactForm) {
-    contactForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-
-        // Get form values
-        const name = document.getElementById('name').value;
-        const email = document.getElementById('email').value;
-        const subject = document.getElementById('subject').value;
-        const message = document.getElementById('message').value;
-
-        // Basic validation
-        if (!name || !email || !subject || !message) {
-            showNotification('Please fill in all fields', 'error');
-            return;
-        }
-
-        if (!isValidEmail(email)) {
-            showNotification('Please enter a valid email address', 'error');
-            return;
-        }
-
-        // Simulate form submission
-        showNotification('Message sent successfully!', 'success');
-        contactForm.reset();
-
-        // In a real application, you would send this data to a server
-        console.log('Form Data:', { name, email, subject, message });
+calendarItems.forEach(item => {
+    item.addEventListener('mouseenter', () => {
+        // Remove active class from all items
+        calendarItems.forEach(i => i.classList.remove('active'));
+        // Add active to hovered item
+        item.classList.add('active');
     });
-}
+});
 
 // ===============================
-// Helper Functions
+// Portfolio/Activity Card Click
 // ===============================
+const activityCards = document.querySelectorAll('.activity-card');
+const courseCards = document.querySelectorAll('.course-card');
+const blogCards = document.querySelectorAll('.blog-card');
 
-// Email validation
-function isValidEmail(email) {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
-}
-
-// Notification system
-function showNotification(message, type = 'info') {
-    // Remove existing notification if any
-    const existingNotification = document.querySelector('.notification');
-    if (existingNotification) {
-        existingNotification.remove();
-    }
-
-    // Create notification element
-    const notification = document.createElement('div');
-    notification.className = `notification notification-${type}`;
-    notification.textContent = message;
-
-    // Add styles
-    notification.style.cssText = `
-        position: fixed;
-        top: 80px;
-        right: 20px;
-        padding: 1rem 1.5rem;
-        border-radius: 8px;
-        background-color: ${type === 'success' ? '#10b981' : type === 'error' ? '#ef4444' : '#3b82f6'};
-        color: white;
-        font-weight: 500;
-        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-        z-index: 9999;
-        animation: slideInRight 0.3s ease;
-    `;
-
-    // Add animation
-    const style = document.createElement('style');
-    style.textContent = `
-        @keyframes slideInRight {
-            from {
-                transform: translateX(100%);
-                opacity: 0;
-            }
-            to {
-                transform: translateX(0);
-                opacity: 1;
-            }
-        }
-    `;
-    document.head.appendChild(style);
-
-    // Add to document
-    document.body.appendChild(notification);
-
-    // Remove after 3 seconds
-    setTimeout(() => {
-        notification.style.animation = 'slideInRight 0.3s ease reverse';
+[...activityCards, ...courseCards, ...blogCards].forEach(card => {
+    card.addEventListener('click', () => {
+        // Add a subtle scale animation on click
+        card.style.transform = 'scale(0.98)';
         setTimeout(() => {
-            notification.remove();
-        }, 300);
-    }, 3000);
-}
-
-// ===============================
-// Typing Effect for Hero
-// ===============================
-const typingElement = document.querySelector('.hero-subtitle');
-if (typingElement) {
-    const texts = ['Web Developer', 'UI/UX Designer', 'Creative Thinker', 'Problem Solver'];
-    let textIndex = 0;
-    let charIndex = 0;
-    let isDeleting = false;
-
-    function typeEffect() {
-        const currentText = texts[textIndex];
-
-        if (isDeleting) {
-            typingElement.textContent = currentText.substring(0, charIndex - 1);
-            charIndex--;
-        } else {
-            typingElement.textContent = currentText.substring(0, charIndex + 1);
-            charIndex++;
-        }
-
-        let typeSpeed = isDeleting ? 50 : 100;
-
-        if (!isDeleting && charIndex === currentText.length) {
-            typeSpeed = 2000;
-            isDeleting = true;
-        } else if (isDeleting && charIndex === 0) {
-            isDeleting = false;
-            textIndex = (textIndex + 1) % texts.length;
-            typeSpeed = 500;
-        }
-
-        setTimeout(typeEffect, typeSpeed);
-    }
-
-    // Start typing effect after page load
-    setTimeout(typeEffect, 1000);
-}
-
-// ===============================
-// Portfolio Filter (Optional)
-// ===============================
-const portfolioItems = document.querySelectorAll('.portfolio-item');
-
-portfolioItems.forEach(item => {
-    item.addEventListener('click', () => {
-        // Add click animation
-        item.style.transform = 'scale(0.95)';
-        setTimeout(() => {
-            item.style.transform = '';
+            card.style.transform = '';
         }, 100);
     });
 });
+
+// ===============================
+// Dynamic Year in Footer
+// ===============================
+const footerCopyright = document.querySelector('.footer-copyright');
+if (footerCopyright) {
+    const currentYear = new Date().getFullYear();
+    footerCopyright.textContent = `© ${currentYear} Ayman Taher`;
+}
+
+// ===============================
+// Podcast Player Controls
+// ===============================
+const playBtn = document.querySelector('.play-btn');
+if (playBtn) {
+    playBtn.addEventListener('click', () => {
+        const icon = playBtn.querySelector('i');
+
+        if (icon.classList.contains('fa-pause')) {
+            icon.classList.remove('fa-pause');
+            icon.classList.add('fa-play');
+        } else {
+            icon.classList.remove('fa-play');
+            icon.classList.add('fa-pause');
+        }
+    });
+}
 
 // ===============================
 // Loading Animation
@@ -290,7 +173,58 @@ window.addEventListener('load', () => {
 });
 
 // ===============================
-// Console Message
+// Parallax Effect on Hero
 // ===============================
-console.log('%c👋 Welcome to my Portfolio!', 'color: #6366f1; font-size: 20px; font-weight: bold;');
-console.log('%cInterested in the code? Check out my GitHub!', 'color: #64748b; font-size: 14px;');
+const heroSection = document.querySelector('.hero');
+if (heroSection) {
+    window.addEventListener('scroll', () => {
+        const scrolled = window.pageYOffset;
+        const parallax = scrolled * 0.5;
+        heroSection.style.transform = `translateY(${parallax}px)`;
+    });
+}
+
+// ===============================
+// Stats Counter Animation
+// ===============================
+function animateCounter(element, target, duration = 2000) {
+    const start = 0;
+    const increment = target / (duration / 16);
+    let current = start;
+
+    const timer = setInterval(() => {
+        current += increment;
+        if (current >= target) {
+            element.textContent = target;
+            clearInterval(timer);
+        } else {
+            element.textContent = Math.floor(current) + 'k';
+        }
+    }, 16);
+}
+
+// Trigger counter animation when stats come into view
+const statsObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            const statValue = entry.target.querySelector('h4');
+            if (statValue && !statValue.classList.contains('animated')) {
+                statValue.classList.add('animated');
+                // Extract number from "+10k" format
+                const value = statValue.textContent.match(/\d+/)[0];
+                animateCounter(statValue, parseInt(value));
+            }
+        }
+    });
+}, { threshold: 0.5 });
+
+document.querySelectorAll('.stat-card').forEach(card => {
+    statsObserver.observe(card);
+});
+
+// ===============================
+// Console Signature
+// ===============================
+console.log('%c🎨 Ayman Taher Portfolio', 'color: #10b981; font-size: 24px; font-weight: bold;');
+console.log('%cProduct Design Lead & Education Consultant', 'color: #9ca3af; font-size: 14px;');
+console.log('%cBuilt with HTML, CSS & JavaScript', 'color: #6b7280; font-size: 12px;');
