@@ -1,43 +1,40 @@
-# LMS Platform - Modern Learning Management System
+# Ayman Taher - Personal Brand Website
 
-A lightweight, modern Learning Management System (LMS) designed for solo instructors and small academies. Built with vanilla JavaScript, HTML, and CSS with a modern component-based design system inspired by Uxcel.
+A modern, production-ready personal brand website for Ayman Taher, Product Design Lead and Education Consultant. Built with Next.js 14, React, TypeScript, and Tailwind CSS.
 
 ## 🚀 Features
 
-### Core Modules
+- **Modern Stack**: Next.js 14 with App Router, React 18, TypeScript, Tailwind CSS
+- **Fully Responsive**: Mobile-first design that works on all devices
+- **SEO Optimized**: Built-in SEO with Next.js metadata API
+- **Fast Performance**: Optimized for Core Web Vitals
+- **Component-Based**: Reusable, maintainable components
+- **Accessibility**: WCAG compliant with semantic HTML and ARIA labels
+- **Type-Safe**: Full TypeScript support throughout
 
-- **🔐 Authentication** - Sign in/Sign up with fake session management (UI only)
-- **📊 Dashboard** - Overview with key stats and quick actions
-- **📚 Courses** - Create, edit, and manage courses with modules and lessons
-- **📖 Content Management** - Structure courses with modules, lessons (video, PDF, text)
-- **👥 Learners** - Manage student enrollment and track progress
-- **📝 Quizzes** - Create auto-graded quizzes with multiple choice questions
-- **📄 Assignments** - Collect and grade student submissions
-- **🏆 Certificates** - Configure certificate templates and auto-issue certificates
-- **🎥 Live Sessions** - Schedule live sessions with attendance tracking
-- **💳 Payments & Plans** - Three-tier pricing (Free, Pro, Pro Plus) with feature restrictions
+## 📋 Pages
 
-### Design System
+- **Home**: Hero, About, Stats, Case Studies, Services, Testimonials, Activities, Blog
+- **About**: Detailed background, journey, professional experience
+- **Academy**: UX/UI design courses and programs
+- **Services**: Professional services and case studies
+- **Blogs**: Blog listings and individual blog posts
+- **Contact**: Contact form and information
 
-Modern, Uxcel-inspired UI components:
+## 🛠️ Tech Stack
 
-- ✅ Reusable buttons (primary, secondary, ghost, destructive)
-- ✅ Form inputs with validation and error states
-- ✅ Cards, modals, and drawers
-- ✅ Tables and data grids
-- ✅ Tabs and navigation
-- ✅ Toasts and alerts
-- ✅ Empty states and skeleton loaders
-- ✅ Progress bars and badges
-- ✅ Fully responsive layout
+- **Framework**: [Next.js 14](https://nextjs.org/)
+- **Language**: [TypeScript](https://www.typescriptlang.org/)
+- **Styling**: [Tailwind CSS](https://tailwindcss.com/)
+- **Font**: [Inter](https://fonts.google.com/specimen/Inter) from Google Fonts
 
-## 📋 Requirements
+## 📦 Installation
 
-- Modern web browser (Chrome, Firefox, Safari, Edge)
-- No backend required - all data stored in localStorage
-- No build process needed - vanilla JavaScript with ES modules
+### Prerequisites
 
-## 🛠️ Setup & Installation
+- Node.js 18+ and npm
+
+### Setup
 
 1. **Clone the repository**
    ```bash
@@ -45,256 +42,212 @@ Modern, Uxcel-inspired UI components:
    cd sjeaa
    ```
 
-2. **Open in browser**
-
-   Simply open `index.html` in your web browser:
-
+2. **Install dependencies**
    ```bash
-   # Using Python's built-in server (recommended)
-   python3 -m http.server 8000
-   # Then visit: http://localhost:8000
-
-   # OR using Node.js http-server
-   npx http-server -p 8000
-   # Then visit: http://localhost:8000
-
-   # OR just double-click index.html
+   npm install
    ```
 
-3. **Sign up / Sign in**
-   - Create a new account with any email/password (no validation)
-   - Or sign in with any credentials (all combinations work for demo)
+3. **Run development server**
+   ```bash
+   npm run dev
+   ```
 
-## 🎯 Usage Guide
+4. **Open in browser**
 
-### Getting Started
+   Visit [http://localhost:3000](http://localhost:3000)
 
-1. **Create Your First Course**
-   - Go to Courses → Create Course
-   - Fill in course details (title, description, price, etc.)
-   - Click "Create Course"
+## 🏗️ Build & Deploy
 
-2. **Add Course Content**
-   - Open the course editor
-   - Click "Add Module" to create a module
-   - Inside each module, click "Add Lesson"
-   - Choose lesson type (Video, PDF, Text)
-   - Add content URL and details
+### Build for Production
 
-3. **Create Assessments**
-   - Go to Quizzes → Create Quiz
-   - Add multiple-choice questions
-   - Set passing score
-   - Assign to a course
+```bash
+npm run build
+```
 
-4. **Manage Learners**
-   - Go to Learners → Add Learner
-   - Enter learner details
-   - Enroll them in courses
-   - Track their progress
+### Start Production Server
 
-5. **Schedule Live Sessions**
-   - Go to Live Sessions → Schedule Session
-   - Set date, time, and platform (Zoom, Meet, etc.)
-   - Add join link
-   - Track attendance after the session
+```bash
+npm start
+```
 
-6. **Configure Certificates**
-   - Go to Certificates
-   - Select a course
-   - Configure certificate template (colors, signature, etc.)
-   - Set completion requirements
+### Deploy to Vercel
 
-### Plan Tiers
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone)
 
-#### Free Plan
-- 1 course
-- 50 students per course
-- 1 GB storage
-- 1 payment gateway
-- Basic features
+1. Push your code to GitHub
+2. Import project in [Vercel](https://vercel.com)
+3. Deploy automatically
 
-#### Pro Plan ($29/month)
-- 10 courses
-- 500 students per course
-- 10 GB storage
-- 2 payment gateways
-- Custom domain
-- Priority support
+### Deploy to Other Platforms
 
-#### Pro Plus Plan ($99/month)
-- Unlimited courses
-- Unlimited students
-- Unlimited storage
-- Unlimited payment gateways
-- Custom domain
-- Team collaboration
-- Advanced analytics
-- Priority support
+- **Netlify**: Connect GitHub repo and deploy
+- **AWS Amplify**: Import from GitHub
+- **DigitalOcean App Platform**: Deploy from GitHub
 
 ## 📁 Project Structure
 
 ```
 sjeaa/
-├── index.html                 # Main HTML entry point
-├── css/
-│   ├── design-system.css     # Design tokens and variables
-│   ├── components.css        # Reusable UI components
-│   └── main.css              # Layout and responsive styles
-├── js/
-│   ├── utils/
-│   │   ├── state.js         # State management system
-│   │   └── storage.js       # localStorage utilities
-│   ├── components/
-│   │   ├── ui.js            # UI component functions
-│   │   └── navigation.js    # Routing and navigation
-│   ├── modules/
-│   │   ├── auth.js          # Authentication module
-│   │   ├── dashboard.js     # Dashboard module
-│   │   ├── courses.js       # Courses management
-│   │   ├── learners.js      # Learner management
-│   │   ├── quizzes.js       # Quiz creation & grading
-│   │   ├── assignments.js   # Assignment management
-│   │   ├── certificates.js  # Certificate templates
-│   │   ├── sessions.js      # Live session scheduling
-│   │   └── payments.js      # Plans & billing
-│   └── app.js               # Main application initialization
-└── README.md                 # This file
+├── src/
+│   ├── app/                    # Next.js App Router pages
+│   │   ├── about/             # About page
+│   │   ├── academy/           # Programs & Courses
+│   │   ├── blogs/             # Blog pages
+│   │   ├── contact/           # Contact page
+│   │   ├── services/          # Services page
+│   │   ├── layout.tsx         # Root layout
+│   │   ├── page.tsx           # Home page
+│   │   └── globals.css        # Global styles
+│   │
+│   └── components/
+│       ├── layout/            # Header, Footer
+│       ├── ui/                # Button, Card, Badge
+│       └── sections/          # Page sections
+│
+├── public/                    # Static assets
+├── tailwind.config.ts        # Tailwind config
+├── tsconfig.json             # TypeScript config
+└── next.config.js            # Next.js config
 ```
 
 ## 🎨 Design System
 
-### Color Palette
+### Colors
 
-- **Primary**: Blue (#5576ff)
-- **Success**: Green (#10b981)
-- **Warning**: Amber (#f59e0b)
-- **Error**: Red (#ef4444)
-- **Neutral**: Gray scale
+```css
+Primary: #10B981 (Teal/Green)
+Dark: #0A0A0A (Main background)
+Card: #171717 (Card background)
+Text Gray: #A3A3A3 (Secondary text)
+```
 
 ### Typography
 
-- Font Family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto
-- Scale: 12px, 14px, 16px, 18px, 20px, 24px, 30px, 36px
-- Weights: 400 (normal), 500 (medium), 600 (semibold), 700 (bold)
+- **Font Family**: Inter (Google Fonts)
+- **Headings**: Bold, 2xl - 5xl
+- **Body**: Regular, sm - lg
 
-### Spacing
+### Components
 
-- Base unit: 4px
-- Scale: 4px, 8px, 12px, 16px, 20px, 24px, 32px, 40px, 48px, 64px, 80px
+#### Button
+```tsx
+<Button variant="primary" size="lg">Click Me</Button>
+```
+- Variants: `primary`, `secondary`, `outline`
+- Sizes: `sm`, `md`, `lg`
 
-## 🔧 Technical Details
+#### Card
+```tsx
+<Card hover padding="lg">Content</Card>
+```
+- Hover effect for interactive cards
+- Customizable padding
 
-### State Management
+#### Section
+```tsx
+<Section title="Title" subtitle="Subtitle" centered>
+  Content
+</Section>
+```
 
-All application state is managed through a centralized `State` object stored in `localStorage`. The state includes:
+## 🔧 Customization
 
-- User session
-- Courses and content
-- Learners and enrollments
-- Quizzes, assignments, and certificates
-- Live sessions and attendance
-- Payment history
-- Current subscription plan
+### Change Colors
 
-### Routing
+Edit `tailwind.config.ts`:
 
-Simple client-side routing using a route registry. No URL changes (SPA behavior).
+```ts
+colors: {
+  primary: {
+    DEFAULT: '#10B981', // Your color
+  }
+}
+```
 
-Routes are registered in `app.js` and handled by the `Navigation` component.
+### Add New Pages
 
-### Form Validation
+1. Create folder in `src/app/`
+2. Add `page.tsx` file
+3. Update navigation in `src/components/layout/Header.tsx`
 
-Built-in form validation with rules:
-- Required fields
-- Email validation
-- Min/max length
-- Pattern matching
-- Custom validators
+### Modify Sections
 
-### Responsive Design
+All sections are in `src/components/sections/`. Edit any file to customize.
 
-Mobile-first responsive design with breakpoints:
-- Mobile: < 768px
-- Tablet: 768px - 1024px
-- Desktop: > 1024px
+## 📱 Responsive Design
 
-## 🧪 Demo Data
+- **Mobile**: < 768px
+- **Tablet**: 768px - 1024px
+- **Desktop**: > 1024px
 
-The platform automatically loads demo data on first use:
-- 1 sample course with modules and lessons
-- 2 demo learners
-- 1 quiz with questions
-- 1 assignment
-- 1 scheduled live session
-- Sample payment history
+All components are fully responsive with mobile-first approach.
 
-## 🔒 Security Notes
+## 🔐 Environment Variables
 
-⚠️ **Important**: This is a front-end only demo application. In production:
+Create a `.env.local` file for environment variables:
 
-- Implement proper backend authentication
-- Validate all inputs on the server
-- Use secure password hashing
-- Implement rate limiting
-- Add CSRF protection
-- Use HTTPS
-- Sanitize user inputs
-- Implement proper authorization
+```env
+# Add your environment variables here
+# NEXT_PUBLIC_API_URL=https://api.example.com
+```
 
 ## 🚀 Future Enhancements
 
-Potential features for production version:
+### Content Management
+- [ ] Integrate with headless CMS (Sanity, Contentful)
+- [ ] Add blog search and filtering
+- [ ] Category and tag system
 
-- Backend API integration
-- Real payment processing (Stripe, PayPal)
-- Email notifications
-- Real-time collaboration
-- Video hosting integration
-- Advanced analytics
-- Mobile app
-- Multi-language support
-- Theme customization
-- Export/import data
-- Bulk operations
-- Advanced reporting
+### Features
+- [ ] Contact form backend integration
+- [ ] Newsletter subscription
+- [ ] Blog comments
+- [ ] Social media integration
+- [ ] Dark/Light mode toggle
+- [ ] Multi-language support
 
-## 📱 Browser Support
+### Performance
+- [ ] Image optimization
+- [ ] Progressive Web App (PWA)
+- [ ] Advanced analytics
+- [ ] Sitemap generation
 
-- Chrome (latest)
-- Firefox (latest)
-- Safari (latest)
-- Edge (latest)
+### Animation
+- [ ] Framer Motion integration
+- [ ] Scroll animations
+- [ ] Page transitions
+
+## 📄 Documentation
+
+See [PROJECT_STRUCTURE.md](PROJECT_STRUCTURE.md) for detailed documentation.
 
 ## 🤝 Contributing
 
-This is a demo project. For production use, consider:
+This is a personal brand website. For issues or suggestions:
 
-1. Adding a proper backend (Node.js, Python, etc.)
-2. Implementing database storage (PostgreSQL, MongoDB)
-3. Adding authentication (JWT, OAuth)
-4. Implementing file uploads (S3, Cloudinary)
-5. Adding real-time features (WebSockets)
-6. Implementing proper testing (Jest, Cypress)
-
-## 📄 License
-
-This project is provided as-is for demonstration purposes.
-
-## 🙏 Acknowledgments
-
-- Design inspired by [Uxcel](https://uxcel.com)
-- Icons: Unicode emoji characters
-- Fonts: System default fonts
+1. Check existing issues
+2. Create detailed bug reports
+3. Submit pull requests with clear descriptions
 
 ## 📞 Support
 
 For questions or issues:
-1. Check the browser console for errors
-2. Clear localStorage and refresh: `localStorage.clear()`
-3. Check browser compatibility
-4. Verify local server is running
+
+- Check Next.js [documentation](https://nextjs.org/docs)
+- Check Tailwind CSS [documentation](https://tailwindcss.com/docs)
+- Review component implementation
+
+## 📝 License
+
+This project is provided as-is for portfolio purposes.
+
+## 🙏 Acknowledgments
+
+- Design based on Figma mockups
+- Built with [Next.js](https://nextjs.org/)
+- Styled with [Tailwind CSS](https://tailwindcss.com/)
+- Font from [Google Fonts](https://fonts.google.com/)
 
 ---
 
-**Built with ❤️ using vanilla JavaScript, HTML, and CSS**
+**Built with ❤️ by Ayman Taher**
