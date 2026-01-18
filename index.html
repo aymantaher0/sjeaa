@@ -1,47 +1,1131 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LMS Platform - Modern Learning Management</title>
+    <title>Ayman Taher - Product Designer & Developer</title>
+    <meta name="description" content="Product Designer and Developer specializing in creating exceptional digital experiences">
 
-    <!-- CSS -->
-    <link rel="stylesheet" href="css/design-system.css">
-    <link rel="stylesheet" href="css/components.css">
-    <link rel="stylesheet" href="css/main.css">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Custom Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#00D9B1',
+                        dark: '#0A0A0A',
+                        'dark-lighter': '#1A1A1A',
+                        'dark-card': '#111111',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .text-gradient {
+                @apply bg-gradient-to-r from-primary to-cyan-400 bg-clip-text text-transparent;
+            }
+            .card-hover {
+                @apply transition-all duration-300 hover:transform hover:-translate-y-2 hover:shadow-2xl;
+            }
+        }
+    </style>
 </head>
-<body>
-    <!-- App Container -->
-    <div id="app">
-        <!-- Toast Container -->
-        <div id="toast-container"></div>
+<body class="bg-dark text-white font-sans antialiased">
 
-        <!-- Loading Screen -->
-        <div id="loading-screen" class="loading-screen">
-            <div class="spinner"></div>
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-dark/80 backdrop-blur-lg border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <!-- Logo -->
+                <a href="#home" class="flex items-center space-x-2">
+                    <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-8 14H9V7h2v10zm6 0h-2V7h2v10z"/>
+                    </svg>
+                </a>
+
+                <!-- Center Navigation Pills -->
+                <div class="hidden lg:flex items-center gap-2 bg-dark-lighter rounded-full px-2 py-2">
+                    <a href="#home" class="px-6 py-2 rounded-full text-sm text-gray-300 hover:bg-dark hover:text-white transition-all">Home</a>
+                    <a href="#about" class="px-6 py-2 rounded-full text-sm text-gray-300 hover:bg-dark hover:text-white transition-all">About</a>
+                    <a href="#clients" class="px-6 py-2 rounded-full text-sm text-gray-300 hover:bg-dark hover:text-white transition-all">Clients</a>
+                    <a href="#projects" class="px-6 py-2 rounded-full text-sm text-gray-300 hover:bg-dark hover:text-white transition-all">Projects</a>
+                    <a href="#contact" class="px-6 py-2 rounded-full text-sm text-gray-300 hover:bg-dark hover:text-white transition-all">Contact</a>
+                </div>
+
+                <!-- Right Side - Menu Button & CTA -->
+                <div class="flex items-center gap-4">
+                    <button class="hidden md:block bg-primary text-dark px-6 py-2 rounded-full font-semibold hover:bg-primary/90 transition-all text-sm">
+                        Book A Consultation
+                    </button>
+
+                    <!-- Menu Grid Button -->
+                    <button id="menu-btn" class="p-2 hover:bg-dark-lighter rounded-lg transition-all" aria-label="Toggle menu">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                            <circle cx="5" cy="5" r="2"/>
+                            <circle cx="12" cy="5" r="2"/>
+                            <circle cx="19" cy="5" r="2"/>
+                            <circle cx="5" cy="12" r="2"/>
+                            <circle cx="12" cy="12" r="2"/>
+                            <circle cx="19" cy="12" r="2"/>
+                            <circle cx="5" cy="19" r="2"/>
+                            <circle cx="12" cy="19" r="2"/>
+                            <circle cx="19" cy="19" r="2"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
         </div>
+    </nav>
 
-        <!-- Main Content (Dynamically Rendered) -->
-        <div id="main-content"></div>
+    <!-- Full Screen Menu Overlay -->
+    <div id="fullscreen-menu" class="fixed inset-0 bg-dark z-[100] hidden">
+        <div class="h-full flex flex-col">
+            <!-- Menu Header -->
+            <div class="flex items-center justify-between px-4 sm:px-6 lg:px-8 h-16 border-b border-white/10">
+                <a href="#home" class="flex items-center space-x-2">
+                    <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-8 14H9V7h2v10zm6 0h-2V7h2v10z"/>
+                    </svg>
+                </a>
+                <div class="flex items-center gap-4">
+                    <button class="bg-primary text-dark px-6 py-2 rounded-full font-semibold hover:bg-primary/90 transition-all text-sm">
+                        Book A Consultation
+                    </button>
+                    <button id="close-menu-btn" class="p-2 hover:bg-dark-lighter rounded-lg transition-all" aria-label="Close menu">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Menu Content -->
+            <div class="flex-1 flex items-center justify-center">
+                <div class="text-center max-w-4xl mx-auto px-4">
+                    <p class="text-gray-400 mb-12 text-sm tracking-wider">Menu.</p>
+                    <nav class="space-y-8">
+                        <a href="#home" class="block text-5xl md:text-7xl font-bold hover:text-primary transition-colors menu-link">HOME</a>
+                        <a href="#about" class="block text-5xl md:text-7xl font-bold hover:text-primary transition-colors menu-link">ABOUT</a>
+                        <a href="#projects" class="block text-5xl md:text-7xl font-bold text-primary transition-colors menu-link">PROJECTS</a>
+                        <a href="#services" class="block text-5xl md:text-7xl font-bold hover:text-primary transition-colors menu-link">SERVICES</a>
+                        <a href="#academy" class="block text-5xl md:text-7xl font-bold hover:text-primary transition-colors menu-link">ACADEMY</a>
+                        <a href="#blogs" class="block text-5xl md:text-7xl font-bold hover:text-primary transition-colors menu-link">BLOGS & NEWS</a>
+                        <a href="#contact" class="block text-5xl md:text-7xl font-bold hover:text-primary transition-colors menu-link">CONTACT</a>
+                    </nav>
+                </div>
+            </div>
+
+            <!-- Menu Footer -->
+            <div class="border-t border-white/10 px-4 sm:px-6 lg:px-8 py-8">
+                <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+                    <!-- Social Links -->
+                    <div class="flex items-center gap-4">
+                        <a href="#" class="w-12 h-12 bg-dark-lighter rounded-full flex items-center justify-center hover:bg-primary hover:text-dark transition-all">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/>
+                                <circle cx="4" cy="4" r="2"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="w-12 h-12 bg-dark-lighter rounded-full flex items-center justify-center hover:bg-primary hover:text-dark transition-all">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 0C5.375 0 0 5.375 0 12s5.375 12 12 12 12-5.375 12-12S18.625 0 12 0zm7.635 8.257c1.094 1.488 1.758 3.32 1.758 5.309 0 .211-.008.42-.023.627-1.664-.367-3.562-.594-5.594-.594-1.008 0-1.992.055-2.949.156-.059-.148-.121-.295-.184-.443-.195-.465-.402-.922-.621-1.371 2.184-.898 4.051-2.164 5.613-3.684zm-7.635-6.66c2.148 0 4.125.682 5.75 1.84-1.406 1.361-3.031 2.48-4.852 3.281-1.129-2.078-2.383-3.867-3.75-5.344.586-.094 1.184-.148 1.852-.148zM5.719 3.316c1.34 1.449 2.605 3.145 3.797 5.086-2.586.926-5.433 1.449-8.516 1.449v-.039c0-2.664.973-5.098 2.719-6.496zm-3.145 9.316c0-.211.008-.42.023-.629 3.281.047 6.207-.516 8.812-1.531.184.367.36.742.527 1.121-2.527.91-4.738 2.238-6.625 3.973-1.734-1.563-2.737-3.844-2.737-6.434zm6.086 8.121c-1.648 0-3.191-.461-4.523-1.254 1.688-1.648 3.691-2.953 6.055-3.824 1.008 2.672 1.785 5.262 2.324 7.785-1.242.199-2.535.293-3.856.293zm7.449-.875c-.461-2.254-1.188-4.637-2.172-7.098.863-.086 1.754-.129 2.672-.129 1.848 0 3.641.207 5.371.551-.625 3.031-2.402 5.613-5.871 6.676z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="w-12 h-12 bg-dark-lighter rounded-full flex items-center justify-center hover:bg-primary hover:text-dark transition-all">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/>
+                            </svg>
+                        </a>
+                    </div>
+
+                    <!-- CTA Buttons -->
+                    <div class="flex items-center gap-4">
+                        <button class="bg-primary text-dark px-8 py-3 rounded-full font-semibold hover:bg-primary/90 transition-all">
+                            Start a New Project
+                        </button>
+                        <button class="bg-white text-dark px-8 py-3 rounded-full font-semibold hover:bg-gray-100 transition-all">
+                            Book Appointment
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <!-- Modal Container -->
-    <div id="modal-container"></div>
+    <!-- Hero Section -->
+    <section class="relative min-h-screen flex items-center justify-center pt-16 px-4 overflow-hidden">
+        <!-- Background Elements -->
+        <div class="absolute inset-0 opacity-20">
+            <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-primary rounded-full filter blur-3xl"></div>
+            <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-cyan-500 rounded-full filter blur-3xl"></div>
+        </div>
 
-    <!-- Scripts -->
-    <script type="module" src="js/utils/storage.js"></script>
-    <script type="module" src="js/utils/state.js"></script>
-    <script type="module" src="js/components/ui.js"></script>
-    <script type="module" src="js/components/navigation.js"></script>
-    <script type="module" src="js/modules/auth.js"></script>
-    <script type="module" src="js/modules/dashboard.js"></script>
-    <script type="module" src="js/modules/courses.js"></script>
-    <script type="module" src="js/modules/learners.js"></script>
-    <script type="module" src="js/modules/quizzes.js"></script>
-    <script type="module" src="js/modules/assignments.js"></script>
-    <script type="module" src="js/modules/certificates.js"></script>
-    <script type="module" src="js/modules/sessions.js"></script>
-    <script type="module" src="js/modules/payments.js"></script>
-    <script type="module" src="js/app.js"></script>
+        <div class="relative max-w-7xl mx-auto text-center z-10">
+            <h1 class="text-6xl md:text-8xl lg:text-9xl font-bold mb-6">
+                Ayman Taher<span class="text-primary">.</span>
+            </h1>
+            <p class="text-xl md:text-2xl text-gray-400 mb-12 max-w-2xl mx-auto">
+                Product Designer & Full-Stack Developer creating exceptional digital experiences
+            </p>
+            <button class="bg-primary text-dark px-8 py-4 rounded-full font-semibold text-lg hover:bg-primary/90 transition-all hover:scale-105">
+                View My Work
+            </button>
+        </div>
+
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
+            </svg>
+        </div>
+    </section>
+
+    <!-- About Me Section -->
+    <section id="about" class="py-20 px-4 bg-dark-lighter">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <!-- Profile Image -->
+                <div class="relative">
+                    <div class="relative w-full max-w-md mx-auto">
+                        <div class="absolute inset-0 bg-primary rounded-3xl transform rotate-6 opacity-20"></div>
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=600&fit=crop"
+                             alt="Ayman Taher"
+                             class="relative rounded-3xl w-full h-auto object-cover shadow-2xl">
+                    </div>
+                </div>
+
+                <!-- About Content -->
+                <div>
+                    <h2 class="text-5xl font-bold mb-6">
+                        About Me
+                    </h2>
+                    <p class="text-gray-400 text-lg mb-6 leading-relaxed">
+                        Ayman Taher is a Product Designer and Full-Stack Developer with 8 years of experience creating
+                        exceptional digital experiences. He has worked with leading tech companies to build scalable,
+                        user-centric solutions that drive business growth.
+                    </p>
+                    <p class="text-gray-400 text-lg mb-8 leading-relaxed">
+                        Specializing in modern web technologies and design systems, Ayman combines technical expertise
+                        with creative vision to deliver products that users love and businesses value.
+                    </p>
+
+                    <!-- Stats -->
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-8">
+                        <div class="text-center p-4 bg-dark rounded-2xl">
+                            <div class="text-3xl font-bold text-primary mb-1">+10k</div>
+                            <div class="text-sm text-gray-400">Projects</div>
+                        </div>
+                        <div class="text-center p-4 bg-dark rounded-2xl">
+                            <div class="text-3xl font-bold text-primary mb-1">+15k</div>
+                            <div class="text-sm text-gray-400">Followers</div>
+                        </div>
+                        <div class="text-center p-4 bg-dark rounded-2xl">
+                            <div class="text-3xl font-bold text-primary mb-1">+10k</div>
+                            <div class="text-sm text-gray-400">Clients</div>
+                        </div>
+                        <div class="text-center p-4 bg-dark rounded-2xl">
+                            <div class="text-3xl font-bold text-primary mb-1">+10k</div>
+                            <div class="text-sm text-gray-400">Reviews</div>
+                        </div>
+                    </div>
+
+                    <button class="bg-primary text-dark px-8 py-3 rounded-full font-semibold hover:bg-primary/90 transition-all">
+                        Contact Me
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- My Journey as Education Consultant Section -->
+    <section id="clients" class="py-20 px-4 bg-dark">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4">My Journey as Education Consultant</h2>
+            </div>
+
+            <!-- Company Grid -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <!-- Syntax -->
+                <div class="bg-white rounded-2xl p-8 flex items-center justify-center aspect-video hover:scale-105 transition-transform">
+                    <div class="text-center">
+                        <div class="text-2xl font-bold text-blue-600">Syntax</div>
+                        <svg class="w-12 h-12 mx-auto mt-2" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5z"/>
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- AUC (American University in Cairo) -->
+                <div class="bg-white rounded-2xl p-8 flex items-center justify-center aspect-video hover:scale-105 transition-transform">
+                    <div class="text-center">
+                        <div class="text-red-600 font-bold text-3xl">AUC</div>
+                        <div class="text-xs text-gray-600 mt-1">American University<br/>in Cairo</div>
+                    </div>
+                </div>
+
+                <!-- Orange Digital Center -->
+                <div class="bg-white rounded-2xl p-8 flex items-center justify-center aspect-video hover:scale-105 transition-transform">
+                    <div class="text-center">
+                        <div class="flex items-center gap-2">
+                            <div class="w-10 h-10 bg-orange-500 rounded-lg"></div>
+                            <div class="text-left">
+                                <div class="text-orange-500 font-bold text-sm">Orange</div>
+                                <div class="text-orange-500 font-bold text-xs">Digital Center</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Placeholder Logo -->
+                <div class="bg-white rounded-2xl p-8 flex items-center justify-center aspect-video hover:scale-105 transition-transform">
+                    <svg class="w-16 h-16 text-gray-400" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5z"/>
+                    </svg>
+                </div>
+
+                <!-- Udemy -->
+                <div class="bg-white rounded-2xl p-8 flex items-center justify-center aspect-video hover:scale-105 transition-transform">
+                    <div class="text-purple-600 font-bold text-2xl">udemy</div>
+                </div>
+
+                <!-- eYouth -->
+                <div class="bg-white rounded-2xl p-8 flex items-center justify-center aspect-video hover:scale-105 transition-transform">
+                    <div class="text-blue-500 font-bold text-2xl">eYouth</div>
+                </div>
+
+                <!-- Sanaam -->
+                <div class="bg-white rounded-2xl p-8 flex items-center justify-center aspect-video hover:scale-105 transition-transform">
+                    <div class="text-gray-800 font-serif text-2xl">Sanaam</div>
+                </div>
+
+                <!-- Almentor -->
+                <div class="bg-white rounded-2xl p-8 flex items-center justify-center aspect-video hover:scale-105 transition-transform">
+                    <div class="flex items-center gap-2">
+                        <div class="w-8 h-8 bg-red-500 rounded-full flex items-center justify-center">
+                            <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M8 5v14l11-7z"/>
+                            </svg>
+                        </div>
+                        <span class="text-gray-800 font-bold text-xl">almentor</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Latest Case Studies Section -->
+    <section id="work" class="py-20 px-4 bg-dark-lighter">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-5xl font-bold mb-4">Latest case studies</h2>
+                <p class="text-gray-400 text-lg">Explore my recent work and projects</p>
+            </div>
+
+            <div class="space-y-8">
+                <!-- Case Study Card 1 -->
+                <div class="bg-dark rounded-3xl overflow-hidden card-hover group">
+                    <div class="grid lg:grid-cols-2 gap-0">
+                        <div class="p-8 lg:p-12 flex flex-col justify-center">
+                            <div class="flex items-center gap-3 mb-4">
+                                <div class="w-10 h-10 bg-primary/20 rounded-lg flex items-center justify-center">
+                                    <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"/>
+                                    </svg>
+                                </div>
+                                <span class="text-primary font-semibold">Product/Web</span>
+                            </div>
+                            <h3 class="text-3xl font-bold mb-4">To Reset Your Application</h3>
+                            <p class="text-gray-400 mb-6 leading-relaxed">
+                                A comprehensive redesign of a mobile application focusing on user experience,
+                                modern design patterns, and seamless interactions that increased user engagement by 150%.
+                            </p>
+                            <button class="bg-primary text-dark px-6 py-3 rounded-full font-semibold inline-flex items-center gap-2 w-fit hover:gap-4 transition-all">
+                                View Case Study
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="relative h-64 lg:h-auto">
+                            <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=800&h=600&fit=crop"
+                                 alt="Case Study"
+                                 class="w-full h-full object-cover">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Case Study Card 2 -->
+                <div class="bg-dark rounded-3xl overflow-hidden card-hover group">
+                    <div class="grid lg:grid-cols-2 gap-0">
+                        <div class="p-8 lg:p-12 flex flex-col justify-center">
+                            <div class="flex items-center gap-3 mb-4">
+                                <div class="w-10 h-10 bg-primary/20 rounded-lg flex items-center justify-center">
+                                    <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"/>
+                                    </svg>
+                                </div>
+                                <span class="text-primary font-semibold">Product/Web</span>
+                            </div>
+                            <h3 class="text-3xl font-bold mb-4">To Reset Your Application</h3>
+                            <p class="text-gray-400 mb-6 leading-relaxed">
+                                Developed a full-stack e-commerce platform with real-time inventory management,
+                                secure payment processing, and an intuitive admin dashboard.
+                            </p>
+                            <button class="bg-primary text-dark px-6 py-3 rounded-full font-semibold inline-flex items-center gap-2 w-fit hover:gap-4 transition-all">
+                                View Case Study
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="relative h-64 lg:h-auto">
+                            <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?w=800&h=600&fit=crop"
+                                 alt="Case Study"
+                                 class="w-full h-full object-cover">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Case Study Card 3 -->
+                <div class="bg-dark rounded-3xl overflow-hidden card-hover group">
+                    <div class="grid lg:grid-cols-2 gap-0">
+                        <div class="p-8 lg:p-12 flex flex-col justify-center">
+                            <div class="flex items-center gap-3 mb-4">
+                                <div class="w-10 h-10 bg-primary/20 rounded-lg flex items-center justify-center">
+                                    <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"/>
+                                    </svg>
+                                </div>
+                                <span class="text-primary font-semibold">Product/Web</span>
+                            </div>
+                            <h3 class="text-3xl font-bold mb-4">To Reset Your Application</h3>
+                            <p class="text-gray-400 mb-6 leading-relaxed">
+                                Created a comprehensive design system with reusable components, ensuring consistency
+                                across all digital products and reducing development time by 40%.
+                            </p>
+                            <button class="bg-primary text-dark px-6 py-3 rounded-full font-semibold inline-flex items-center gap-2 w-fit hover:gap-4 transition-all">
+                                View Case Study
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="relative h-64 lg:h-auto">
+                            <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=800&h=600&fit=crop"
+                                 alt="Case Study"
+                                 class="w-full h-full object-cover">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-12">
+                <button class="text-primary font-semibold flex items-center gap-2 mx-auto hover:gap-4 transition-all">
+                    View All Projects
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solutions We Provide Section -->
+    <section id="services" class="py-20 px-4 bg-dark">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-5xl font-bold mb-4">Solution we provide</h2>
+                <p class="text-gray-400 text-lg">Comprehensive services to bring your ideas to life</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Service Card 1 -->
+                <div class="bg-dark-lighter p-8 rounded-3xl card-hover border border-white/5">
+                    <div class="w-14 h-14 bg-primary/20 rounded-2xl flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3">Search Engine Optimization</h3>
+                    <p class="text-gray-400 leading-relaxed">
+                        Improve your online visibility and drive organic traffic with data-driven SEO strategies
+                        that deliver measurable results.
+                    </p>
+                </div>
+
+                <!-- Service Card 2 -->
+                <div class="bg-dark-lighter p-8 rounded-3xl card-hover border border-white/5">
+                    <div class="w-14 h-14 bg-primary/20 rounded-2xl flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3">UI/UX Design</h3>
+                    <p class="text-gray-400 leading-relaxed">
+                        Create beautiful, intuitive interfaces that users love. From wireframes to high-fidelity
+                        prototypes and design systems.
+                    </p>
+                </div>
+
+                <!-- Service Card 3 -->
+                <div class="bg-dark-lighter p-8 rounded-3xl card-hover border border-white/5">
+                    <div class="w-14 h-14 bg-primary/20 rounded-2xl flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3">Full-Stack Development</h3>
+                    <p class="text-gray-400 leading-relaxed">
+                        Build scalable, performant web applications using modern technologies and best practices
+                        for both frontend and backend.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Client Feedback Section -->
+    <section class="py-20 px-4 bg-dark-lighter">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-5xl font-bold mb-4">My clients feedback</h2>
+                <p class="text-gray-400 text-lg">What people say about working with me</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="bg-dark p-8 rounded-3xl border border-white/5">
+                    <div class="flex gap-1 mb-4">
+                        <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                        </svg>
+                        <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                        </svg>
+                        <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                        </svg>
+                        <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                        </svg>
+                        <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                        </svg>
+                    </div>
+                    <p class="text-gray-400 mb-6 leading-relaxed">
+                        "Working with Ayman was an absolute pleasure. His attention to detail and creative approach
+                        transformed our product into something truly exceptional."
+                    </p>
+                    <div class="flex items-center gap-3">
+                        <img src="https://i.pravatar.cc/100?img=1" alt="Client" class="w-12 h-12 rounded-full">
+                        <div>
+                            <div class="font-semibold">John Smith</div>
+                            <div class="text-sm text-gray-400">CEO, TechCorp</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 2 -->
+                <div class="bg-dark p-8 rounded-3xl border border-white/5">
+                    <div class="flex gap-1 mb-4">
+                        <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                        </svg>
+                        <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                        </svg>
+                        <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                        </svg>
+                        <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                        </svg>
+                        <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                        </svg>
+                    </div>
+                    <p class="text-gray-400 mb-6 leading-relaxed">
+                        "Exceptional work! Ayman delivered beyond our expectations. His technical skills combined
+                        with design expertise made the project a huge success."
+                    </p>
+                    <div class="flex items-center gap-3">
+                        <img src="https://i.pravatar.cc/100?img=5" alt="Client" class="w-12 h-12 rounded-full">
+                        <div>
+                            <div class="font-semibold">Sarah Johnson</div>
+                            <div class="text-sm text-gray-400">Product Manager, StartupX</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 3 -->
+                <div class="bg-dark p-8 rounded-3xl border border-white/5">
+                    <div class="flex gap-1 mb-4">
+                        <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                        </svg>
+                        <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                        </svg>
+                        <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                        </svg>
+                        <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                        </svg>
+                        <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                        </svg>
+                    </div>
+                    <p class="text-gray-400 mb-6 leading-relaxed">
+                        "A true professional! Ayman's expertise in both design and development made our project
+                        seamless. Highly recommend for any digital project."
+                    </p>
+                    <div class="flex items-center gap-3">
+                        <img src="https://i.pravatar.cc/100?img=8" alt="Client" class="w-12 h-12 rounded-full">
+                        <div>
+                            <div class="font-semibold">Michael Chen</div>
+                            <div class="text-sm text-gray-400">Founder, InnovateLab</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pagination -->
+            <div class="flex justify-center gap-3 mt-12">
+                <button class="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center hover:bg-primary hover:border-primary hover:text-dark transition-all">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                    </svg>
+                </button>
+                <button class="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center hover:bg-primary hover:border-primary hover:text-dark transition-all">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Latest Activities Section -->
+    <section class="py-20 px-4 bg-dark">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-5xl font-bold mb-4">Latest Activities</h2>
+                <p class="text-gray-400 text-lg">Recent events and highlights</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Activity 1 -->
+                <div class="group relative overflow-hidden rounded-3xl card-hover">
+                    <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&h=500&fit=crop"
+                         alt="Activity"
+                         class="w-full h-80 object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-dark via-dark/50 to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 right-0 p-8">
+                        <span class="inline-block px-4 py-1 bg-primary text-dark text-sm font-semibold rounded-full mb-3">Conference</span>
+                        <h3 class="text-2xl font-bold mb-2">Speaking Summit at UK Talk</h3>
+                        <p class="text-gray-300">Sharing insights on modern web development</p>
+                    </div>
+                </div>
+
+                <!-- Activity 2 -->
+                <div class="group relative overflow-hidden rounded-3xl card-hover">
+                    <img src="https://images.unsplash.com/photo-1511578314322-379afb476865?w=800&h=500&fit=crop"
+                         alt="Activity"
+                         class="w-full h-80 object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-dark via-dark/50 to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 right-0 p-8">
+                        <span class="inline-block px-4 py-1 bg-primary text-dark text-sm font-semibold rounded-full mb-3">Workshop</span>
+                        <h3 class="text-2xl font-bold mb-2">Speaking Summit at UK Talk</h3>
+                        <p class="text-gray-300">Leading a workshop on UI/UX best practices</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Everything You Need Section -->
+    <section class="py-20 px-4 bg-dark-lighter">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-5xl font-bold mb-4">Everything you need to succeed</h2>
+                <p class="text-gray-400 text-lg max-w-2xl mx-auto">
+                    Comprehensive solutions and services to help you achieve your digital goals
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div class="bg-dark p-8 rounded-3xl card-hover border border-white/5 text-center">
+                    <div class="w-20 h-20 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-10 h-10 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Fast Delivery</h3>
+                    <p class="text-gray-400">Quick turnaround without compromising quality</p>
+                </div>
+
+                <!-- Feature 2 -->
+                <div class="bg-dark p-8 rounded-3xl card-hover border border-white/5 text-center">
+                    <div class="w-20 h-20 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-10 h-10 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Secure & Reliable</h3>
+                    <p class="text-gray-400">Built with security and performance in mind</p>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="bg-dark p-8 rounded-3xl card-hover border border-white/5 text-center">
+                    <div class="w-20 h-20 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-10 h-10 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">24/7 Support</h3>
+                    <p class="text-gray-400">Always here to help you succeed</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Book Consultation Section -->
+    <section class="py-20 px-4 bg-dark">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h2 class="text-5xl font-bold mb-6">Book A consultation</h2>
+                    <p class="text-gray-400 text-lg mb-8 leading-relaxed">
+                        Ready to start your next project? Schedule a free consultation to discuss your ideas
+                        and how we can work together to bring them to life.
+                    </p>
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-start gap-3">
+                            <svg class="w-6 h-6 text-primary flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                            </svg>
+                            <span class="text-gray-300">Free initial consultation to understand your needs</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <svg class="w-6 h-6 text-primary flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                            </svg>
+                            <span class="text-gray-300">Detailed project proposal and timeline</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <svg class="w-6 h-6 text-primary flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                            </svg>
+                            <span class="text-gray-300">Transparent pricing with no hidden costs</span>
+                        </li>
+                    </ul>
+                    <button class="bg-primary text-dark px-8 py-4 rounded-full font-semibold text-lg hover:bg-primary/90 transition-all hover:scale-105">
+                        Schedule a Call
+                    </button>
+                </div>
+                <div class="relative">
+                    <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?w=800&h=600&fit=crop"
+                         alt="Consultation"
+                         class="rounded-3xl w-full h-auto object-cover shadow-2xl">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blogs & Podcast Section -->
+    <section class="py-20 px-4 bg-dark-lighter">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid lg:grid-cols-2 gap-12">
+                <!-- Blogs -->
+                <div class="bg-dark p-8 lg:p-12 rounded-3xl">
+                    <h2 class="text-4xl font-bold mb-6">Blogs</h2>
+                    <p class="text-gray-400 mb-8">
+                        Sharing insights, tutorials, and thoughts on design, development, and the tech industry.
+                    </p>
+                    <div class="space-y-6 mb-8">
+                        <div class="flex items-center gap-4">
+                            <div class="w-16 h-16 bg-primary/20 rounded-2xl flex-shrink-0"></div>
+                            <div>
+                                <h4 class="font-semibold mb-1">Building Scalable Design Systems</h4>
+                                <p class="text-sm text-gray-400">5 min read</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <div class="w-16 h-16 bg-primary/20 rounded-2xl flex-shrink-0"></div>
+                            <div>
+                                <h4 class="font-semibold mb-1">Modern Frontend Architecture</h4>
+                                <p class="text-sm text-gray-400">8 min read</p>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="text-primary font-semibold flex items-center gap-2 hover:gap-4 transition-all">
+                        Read All Articles
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                        </svg>
+                    </button>
+                </div>
+
+                <!-- Podcast -->
+                <div class="bg-dark p-8 lg:p-12 rounded-3xl">
+                    <h2 class="text-4xl font-bold mb-6">Podcast - پودکاست صنعت</h2>
+                    <p class="text-gray-400 mb-8">
+                        Weekly conversations with industry leaders, sharing experiences and insights on building better products.
+                    </p>
+                    <div class="space-y-6 mb-8">
+                        <div class="flex items-center gap-4">
+                            <div class="w-16 h-16 bg-primary/20 rounded-2xl flex-shrink-0 flex items-center justify-center">
+                                <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold mb-1">Episode 42: Future of Web Development</h4>
+                                <p class="text-sm text-gray-400">45 min</p>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="text-primary font-semibold flex items-center gap-2 hover:gap-4 transition-all">
+                        Listen to All Episodes
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Selected Shots Section -->
+    <section class="py-20 px-4 bg-dark">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-5xl font-bold mb-4">Some Selected Shots</h2>
+                <p class="text-gray-400 text-lg">A glimpse into recent design work</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Shot 1 -->
+                <div class="bg-gradient-to-br from-gray-200 to-gray-100 rounded-3xl p-12 flex items-center justify-center card-hover">
+                    <div class="bg-white rounded-[3rem] shadow-2xl w-64 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=400&h=800&fit=crop"
+                             alt="Mobile App Design"
+                             class="w-full h-auto">
+                    </div>
+                </div>
+
+                <!-- Shot 2 -->
+                <div class="bg-gradient-to-br from-gray-200 to-gray-100 rounded-3xl p-12 flex items-center justify-center card-hover">
+                    <div class="bg-white rounded-[3rem] shadow-2xl w-64 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?w=400&h=800&fit=crop"
+                             alt="Mobile App Design"
+                             class="w-full h-auto">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Me Section with Social Cards -->
+    <section id="contact" class="py-20 px-4 bg-dark">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-5xl font-bold mb-4">Contact me</h2>
+                <p class="text-gray-400">I offer a computer education system for designers centered around<br/>two main products: Course</p>
+            </div>
+
+            <!-- Vertical Text on Left -->
+            <div class="relative">
+                <div class="hidden lg:block absolute left-0 top-1/2 -translate-y-1/2 -translate-x-12">
+                    <p class="text-gray-600 text-sm -rotate-90 whitespace-nowrap">kevin.gilbert@gmail.com</p>
+                </div>
+
+                <!-- Contact Cards Grid -->
+                <div>
+                    <h3 class="text-3xl font-bold mb-8">have something awesome ideas?</h3>
+                    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                        <!-- WhatsApp Card -->
+                        <a href="https://wa.me/5415511714" class="group bg-primary hover:bg-primary/90 rounded-3xl p-8 aspect-square flex flex-col justify-between transition-all hover:scale-105">
+                            <div class="flex justify-between items-start">
+                                <div class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center">
+                                    <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L0 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+                                    </svg>
+                                </div>
+                                <svg class="w-6 h-6 text-white opacity-0 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <div class="text-white font-bold text-xl mb-2">WHATSAPP</div>
+                                <div class="text-white/80 text-sm">(954) 54331-1714</div>
+                            </div>
+                        </a>
+
+                        <!-- Email Card -->
+                        <a href="mailto:hello@shihabkaasd.com" class="group bg-dark-card hover:bg-dark-lighter rounded-3xl p-8 aspect-square flex flex-col justify-between transition-all hover:scale-105 border border-white/5">
+                            <div class="flex justify-between items-start">
+                                <div class="w-12 h-12 bg-white/5 rounded-full flex items-center justify-center">
+                                    <svg class="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                                    </svg>
+                                </div>
+                                <svg class="w-6 h-6 text-gray-400 opacity-0 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <div class="text-white font-bold text-xl mb-2">EMAIL</div>
+                                <div class="text-gray-400 text-sm">hello@shihabkaasd.com</div>
+                            </div>
+                        </a>
+
+                        <!-- LinkedIn Card -->
+                        <a href="https://linkedin.com/in/aymantaher" class="group bg-dark-card hover:bg-dark-lighter rounded-3xl p-8 aspect-square flex flex-col justify-between transition-all hover:scale-105 border border-white/5">
+                            <div class="flex justify-between items-start">
+                                <div class="w-12 h-12 bg-white/5 rounded-full flex items-center justify-center">
+                                    <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/>
+                                        <circle cx="4" cy="4" r="2"/>
+                                    </svg>
+                                </div>
+                                <svg class="w-6 h-6 text-gray-400 opacity-0 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <div class="text-white font-bold text-xl mb-2">LINKEDIN</div>
+                                <div class="text-gray-400 text-sm">linkedin.com/in/aymantaher</div>
+                            </div>
+                        </a>
+
+                        <!-- Instagram Card -->
+                        <a href="https://instagram.com/uk_ayman" class="group bg-dark-card hover:bg-dark-lighter rounded-3xl p-8 aspect-square flex flex-col justify-between transition-all hover:scale-105 border border-white/5">
+                            <div class="flex justify-between items-start">
+                                <div class="w-12 h-12 bg-white/5 rounded-full flex items-center justify-center">
+                                    <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                                    </svg>
+                                </div>
+                                <svg class="w-6 h-6 text-gray-400 opacity-0 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <div class="text-white font-bold text-xl mb-2">INSTAGRAM</div>
+                                <div class="text-gray-400 text-sm">uk_ayman</div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Big Ideas Contact Form Section -->
+    <section class="py-20 px-4 bg-dark-lighter">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl md:text-5xl font-bold mb-6">Big Ideas Start Here — Let's<br/>Work Together Now</h2>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <!-- Profile Image -->
+                <div class="relative">
+                    <div class="relative w-full max-w-lg mx-auto">
+                        <div class="absolute inset-0 bg-gradient-to-br from-purple-600 to-pink-600 rounded-3xl transform rotate-3 opacity-80"></div>
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=800&fit=crop"
+                             alt="Ayman Taher"
+                             class="relative rounded-3xl w-full h-auto object-cover shadow-2xl">
+                        <div class="absolute bottom-8 left-8 right-8 bg-dark/80 backdrop-blur-md rounded-2xl p-6">
+                            <p class="text-white text-lg font-medium">DESIGN IS NOT ABOUT MAKING THINGS LOOK GOOD — IT'S ABOUT MAKING THEM FEEL RIGHT</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Form -->
+                <div>
+                    <form class="space-y-4">
+                        <input type="text"
+                               placeholder="Your Name"
+                               class="w-full bg-dark border border-white/10 rounded-2xl px-6 py-4 text-white placeholder-gray-500 focus:outline-none focus:border-primary transition-colors"
+                               aria-label="Your Name">
+                        <input type="tel"
+                               placeholder="Your Phone"
+                               class="w-full bg-dark border border-white/10 rounded-2xl px-6 py-4 text-white placeholder-gray-500 focus:outline-none focus:border-primary transition-colors"
+                               aria-label="Your Phone">
+                        <input type="email"
+                               placeholder="Your Email"
+                               class="w-full bg-dark border border-white/10 rounded-2xl px-6 py-4 text-white placeholder-gray-500 focus:outline-none focus:border-primary transition-colors"
+                               aria-label="Your Email">
+
+                        <!-- Service Selection -->
+                        <div class="flex flex-wrap gap-3">
+                            <button type="button" class="px-4 py-2 bg-primary text-dark rounded-full text-sm font-semibold hover:bg-primary/90 transition-all">
+                                Web Design
+                            </button>
+                            <button type="button" class="px-4 py-2 bg-dark border border-white/10 text-white rounded-full text-sm font-semibold hover:bg-dark-lighter transition-all">
+                                Motion Graphics
+                            </button>
+                            <button type="button" class="px-4 py-2 bg-dark border border-white/10 text-white rounded-full text-sm font-semibold hover:bg-dark-lighter transition-all">
+                                Content Marketing
+                            </button>
+                            <button type="button" class="px-4 py-2 bg-dark border border-white/10 text-white rounded-full text-sm font-semibold hover:bg-dark-lighter transition-all">
+                                Branding
+                            </button>
+                        </div>
+
+                        <textarea placeholder="Message"
+                                  rows="5"
+                                  class="w-full bg-dark border border-white/10 rounded-2xl px-6 py-4 text-white placeholder-gray-500 focus:outline-none focus:border-primary transition-colors resize-none"
+                                  aria-label="Your Message"></textarea>
+
+                        <button type="submit"
+                                class="w-full bg-primary text-dark px-8 py-4 rounded-full font-semibold hover:bg-primary/90 transition-all text-lg">
+                            let' work together
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 px-4 bg-dark border-t border-white/10">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+                <div class="text-gray-400">
+                    © 2024 Ayman Taher. All rights reserved.
+                </div>
+                <div class="flex items-center gap-6">
+                    <a href="#" class="text-gray-400 hover:text-primary transition-colors" aria-label="Twitter">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/>
+                        </svg>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-primary transition-colors" aria-label="LinkedIn">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/>
+                            <circle cx="4" cy="4" r="2"/>
+                        </svg>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-primary transition-colors" aria-label="GitHub">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                        </svg>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-primary transition-colors" aria-label="Dribbble">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 0C5.375 0 0 5.375 0 12s5.375 12 12 12 12-5.375 12-12S18.625 0 12 0zm7.635 8.257c1.094 1.488 1.758 3.32 1.758 5.309 0 .211-.008.42-.023.627-1.664-.367-3.562-.594-5.594-.594-1.008 0-1.992.055-2.949.156-.059-.148-.121-.295-.184-.443-.195-.465-.402-.922-.621-1.371 2.184-.898 4.051-2.164 5.613-3.684zm-7.635-6.66c2.148 0 4.125.682 5.75 1.84-1.406 1.361-3.031 2.48-4.852 3.281-1.129-2.078-2.383-3.867-3.75-5.344.586-.094 1.184-.148 1.852-.148zM5.719 3.316c1.34 1.449 2.605 3.145 3.797 5.086-2.586.926-5.433 1.449-8.516 1.449v-.039c0-2.664.973-5.098 2.719-6.496zm-3.145 9.316c0-.211.008-.42.023-.629 3.281.047 6.207-.516 8.812-1.531.184.367.36.742.527 1.121-2.527.91-4.738 2.238-6.625 3.973-1.734-1.563-2.737-3.844-2.737-6.434zm6.086 8.121c-1.648 0-3.191-.461-4.523-1.254 1.688-1.648 3.691-2.953 6.055-3.824 1.008 2.672 1.785 5.262 2.324 7.785-1.242.199-2.535.293-3.856.293zm7.449-.875c-.461-2.254-1.188-4.637-2.172-7.098.863-.086 1.754-.129 2.672-.129 1.848 0 3.641.207 5.371.551-.625 3.031-2.402 5.613-5.871 6.676z"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Chat Button -->
+    <button class="fixed bottom-8 right-8 w-16 h-16 bg-primary text-dark rounded-full shadow-2xl flex items-center justify-center hover:scale-110 transition-all z-50" aria-label="Open chat">
+        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"/>
+        </svg>
+    </button>
+
+    <!-- JavaScript -->
+    <script>
+        // Fullscreen Menu Toggle
+        const menuBtn = document.getElementById('menu-btn');
+        const closeMenuBtn = document.getElementById('close-menu-btn');
+        const fullscreenMenu = document.getElementById('fullscreen-menu');
+
+        menuBtn.addEventListener('click', () => {
+            fullscreenMenu.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        });
+
+        closeMenuBtn.addEventListener('click', () => {
+            fullscreenMenu.classList.add('hidden');
+            document.body.style.overflow = '';
+        });
+
+        // Close menu when clicking on a menu link
+        document.querySelectorAll('.menu-link').forEach(link => {
+            link.addEventListener('click', () => {
+                fullscreenMenu.classList.add('hidden');
+                document.body.style.overflow = '';
+            });
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href !== '#' && href.length > 1) {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                }
+            });
+        });
+
+        // Navbar background on scroll
+        const nav = document.querySelector('nav');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                nav.classList.add('bg-dark');
+            } else {
+                nav.classList.remove('bg-dark');
+            }
+        });
+
+        // Form submission
+        const forms = document.querySelectorAll('form');
+        forms.forEach(form => {
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                alert('Thank you for your message! I will get back to you soon.');
+                form.reset();
+            });
+        });
+
+        // Service selection buttons toggle
+        document.querySelectorAll('[type="button"]').forEach(button => {
+            if (button.closest('form')) {
+                button.addEventListener('click', function() {
+                    // Toggle active state
+                    const isActive = this.classList.contains('bg-primary');
+                    if (isActive) {
+                        this.classList.remove('bg-primary', 'text-dark');
+                        this.classList.add('bg-dark', 'border', 'border-white/10', 'text-white');
+                    } else {
+                        this.classList.remove('bg-dark', 'border', 'border-white/10', 'text-white');
+                        this.classList.add('bg-primary', 'text-dark');
+                    }
+                });
+            }
+        });
+    </script>
 </body>
 </html>
